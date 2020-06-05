@@ -1,7 +1,8 @@
-package com.frogsm.instagram_demo
+package com.frogsm.instagram_demo.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.frogsm.instagram_demo.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
