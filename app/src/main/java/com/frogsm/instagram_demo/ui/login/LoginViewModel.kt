@@ -2,10 +2,10 @@ package com.frogsm.instagram_demo.ui.login
 
 import android.content.Context
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.frogsm.instagram_demo.R
 import com.frogsm.instagram_demo.domain.login.ValidateLogin
-import com.frogsm.instagram_demo.ui.base.BaseViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
@@ -15,7 +15,7 @@ import javax.inject.Inject
 class LoginViewModel @Inject constructor(
     context: Context,
     private val validateLogin: ValidateLogin
-) : BaseViewModel(), LoginController {
+) : ViewModel(), LoginController {
 
     val liveData = MutableLiveData<LoginStateBindable>()
     private val state = LoginState(context.resources)
