@@ -36,6 +36,10 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
             viewModel.onClientIdChanged(text)
         }
 
+        clientSecretIdEditBox.doAfterTextChanged { text ->
+            viewModel.onClientSecretIdChanged(text)
+        }
+
         redirectUriEditBox.doAfterTextChanged { text ->
             viewModel.onRedirectUriChanged(text)
         }
@@ -60,6 +64,10 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
             clientIdEditBox
                 .takeIf { it.text.toString() != state.clientId }
                 ?.run { text = SpannableStringBuilder(state.clientId) }
+
+            clientSecretIdEditBox
+                .takeIf { it.text.toString() != state.clientId }
+                ?.run { text = SpannableStringBuilder(state.clientSecretId) }
 
             redirectUriEditBox
                 .takeIf { it.text.toString() != state.redirectUri }

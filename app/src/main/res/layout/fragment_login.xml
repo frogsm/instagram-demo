@@ -17,11 +17,11 @@
         app:layout_constraintVertical_chainStyle="packed" />
 
     <TextView
-        android:id="@+id/id"
+        android:id="@+id/clientId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/login_id"
-        app:layout_constraintBottom_toTopOf="@id/redirectUriEditBox"
+        app:layout_constraintBottom_toTopOf="@id/clientSecretIdEditBox"
         app:layout_constraintEnd_toStartOf="@id/clientIdEditBox"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/instagramLogo" />
@@ -33,11 +33,34 @@
         android:layout_marginVertical="8dp"
         android:layout_marginStart="10dp"
         android:inputType="number"
+        android:nextFocusDown="@id/clientSecretIdEditBox"
+        app:layout_constraintBottom_toTopOf="@id/clientSecretIdEditBox"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/clientId"
+        app:layout_constraintTop_toBottomOf="@id/instagramLogo" />
+
+    <TextView
+        android:id="@+id/clientSecretId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/login_secret_id"
+        app:layout_constraintBottom_toTopOf="@id/redirectUriEditBox"
+        app:layout_constraintEnd_toStartOf="@id/clientSecretIdEditBox"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/clientIdEditBox" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/clientSecretIdEditBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="8dp"
+        android:layout_marginStart="10dp"
+        android:inputType="text"
         android:nextFocusDown="@id/redirectUriEditBox"
         app:layout_constraintBottom_toTopOf="@id/redirectUriEditBox"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/id"
-        app:layout_constraintTop_toBottomOf="@id/instagramLogo" />
+        app:layout_constraintStart_toEndOf="@id/clientSecretId"
+        app:layout_constraintTop_toBottomOf="@id/clientIdEditBox" />
 
     <TextView
         android:id="@+id/redirectUri"
@@ -47,7 +70,7 @@
         app:layout_constraintBottom_toTopOf="@id/loginButton"
         app:layout_constraintEnd_toStartOf="@id/redirectUriEditBox"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/clientIdEditBox" />
+        app:layout_constraintTop_toBottomOf="@id/clientSecretIdEditBox" />
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/redirectUriEditBox"
@@ -60,7 +83,7 @@
         app:layout_constraintBottom_toTopOf="@id/loginButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/redirectUri"
-        app:layout_constraintTop_toBottomOf="@id/clientIdEditBox" />
+        app:layout_constraintTop_toBottomOf="@id/clientSecretIdEditBox" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/loginButton"

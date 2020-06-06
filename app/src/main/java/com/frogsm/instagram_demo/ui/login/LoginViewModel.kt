@@ -1,6 +1,7 @@
 package com.frogsm.instagram_demo.ui.login
 
 import android.content.Context
+import android.text.Editable
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -26,6 +27,11 @@ class LoginViewModel @Inject constructor(
 
     override fun onClientIdChanged(text: CharSequence?) {
         state.onClientIdChanged(text)
+        liveData.postValue(state)
+    }
+
+    override fun onClientSecretIdChanged(text: Editable?) {
+        state.onClientSecretIdChanged(text)
         liveData.postValue(state)
     }
 

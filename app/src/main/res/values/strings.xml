@@ -12,9 +12,11 @@
     미리 테스터 계정으로 등록해둔 클라이언트 아이디 정보를 이용해서 로그인 하도록 함.
     -->
     <string name="client_id">2708291786122110</string>
+    <string name="client_secret_id">2cf7bb7184c0a93eccbd3be05b9549d1</string>
     <string name="redirect_url">https://www.kakaopay.com/</string>
 
     <string name="login_id">클라이언트 아이디</string>
+    <string name="login_secret_id">클라이언트 시크릿 아이디</string>
     <string name="login_redirect_uri">리다이렉트 URI</string>
 
     <!-- Word -->
