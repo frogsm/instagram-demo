@@ -1,4 +1,11 @@
 <resources>
     <string name="app_name">instagram-demo</string>
     <string name="facebook_app_id">667509350477967</string>
+
+    <string name="login_id_hint">전화번호, 이메일 주소 또는 사용자 이름</string>
+    <string name="login_password_hint">@string/password</string>
+
+    <!-- Word -->
+    <string name="login">로그인</string>
+    <string name="password">비밀번호</string>
 </resources>

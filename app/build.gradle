@@ -29,7 +29,7 @@ android {
         sourceCompatibility = '1.8'
         targetCompatibility = '1.8'
     }
-    
+
     kotlinOptions {
         jvmTarget = '1.8'
         freeCompilerArgs = ["-Xallow-result-return-type"]
@@ -51,13 +51,15 @@ dependencies {
     implementation deps.navigation.ui_ktx
     implementation deps.navigation.fragment_ktx
 
+    implementation deps.material.base
+
     implementation deps.dagger.base
     implementation deps.dagger.android
     implementation deps.dagger.android_support
     kapt deps.dagger.compiler
     kapt deps.dagger.compiler_processor
 
-    implementation deps.facebook.sdk
+    implementation deps.facebook.base
 
     testImplementation deps.test.junit
     androidTestImplementation deps.test.ext_junit
