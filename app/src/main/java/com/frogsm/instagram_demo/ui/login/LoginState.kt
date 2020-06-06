@@ -12,6 +12,7 @@ interface LoginStateBindable {
     var redirectUri: String
     var showSnackBar: Event<String>?
     var navigateToken: Event<Unit>?
+    var navigateMediaCollection: Event<Unit>?
 }
 
 class LoginState(
@@ -20,7 +21,8 @@ class LoginState(
     override var clientSecretId: String = resources.getString(R.string.client_secret_id),
     override var redirectUri: String = resources.getString(R.string.redirect_url),
     override var showSnackBar: Event<String>? = null,
-    override var navigateToken: Event<Unit>? = null
+    override var navigateToken: Event<Unit>? = null,
+    override var navigateMediaCollection: Event<Unit>? = null
 ) : LoginStateBindable {
 
     fun onClientIdChanged(text: CharSequence?) {

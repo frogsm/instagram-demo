@@ -73,6 +73,10 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
                 .takeIf { it.text.toString() != state.redirectUri }
                 ?.run { text = SpannableStringBuilder(state.redirectUri) }
 
+            state.showSnackBar?.observeOnlyOnce {
+                Snackbar.make(requireView(), it, Snackbar.LENGTH_LONG).show()
+            }
+
             state.navigateToken?.observeOnlyOnce {
                 val action = LoginFragmentDirections.actionLoginFragmentToTokenFragment(
                     clientId = state.clientId,
@@ -82,8 +86,9 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
                 findNavController().navigateSafely(action)
             }
 
-            state.showSnackBar?.observeOnlyOnce {
-                Snackbar.make(requireView(), it, Snackbar.LENGTH_LONG).show()
+            state.navigateMediaCollection?.observeOnlyOnce {
+                val action = LoginFragmentDirections.actionLoginFragmentToMediaCollectionFragment()
+                findNavController().navigateSafely(action)
             }
         }
     }

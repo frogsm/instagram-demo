@@ -2,6 +2,8 @@ package com.frogsm.instagram_demo.ui
 
 import com.frogsm.instagram_demo.ui.login.LoginFragment
 import com.frogsm.instagram_demo.ui.login.LoginModule
+import com.frogsm.instagram_demo.ui.mediacollection.MediaCollectionFragment
+import com.frogsm.instagram_demo.ui.mediacollection.MediaCollectionModule
 import com.frogsm.instagram_demo.ui.splash.SplashFragment
 import com.frogsm.instagram_demo.ui.splash.SplashModule
 import com.frogsm.instagram_demo.ui.token.TokenFragment
@@ -20,4 +22,7 @@ abstract class MainActivityModule {
 
     @ContributesAndroidInjector(modules = [TokenModule::class])
     abstract fun bindsTokenFragment(): TokenFragment
+
+    @ContributesAndroidInjector(modules = [MediaCollectionModule::class])
+    abstract fun bindsMediaCollectionFragment(): MediaCollectionFragment
 }
