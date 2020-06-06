@@ -37,6 +37,14 @@ class LoginState(
         redirectUri = text?.toString() ?: ""
     }
 
+    fun successValidateAccessToken() {
+        navigateMediaCollection = Event(Unit)
+    }
+
+    fun failureValidateAccessToken() {
+
+    }
+
     fun successValidateLogin() {
         navigateToken = Event(Unit)
     }

@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.frogsm.instagram_demo.R
+import com.frogsm.instagram_demo.domain.login.ValidateAccessToken
 import com.frogsm.instagram_demo.domain.login.ValidateLogin
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.cancel
@@ -15,6 +16,7 @@ import javax.inject.Inject
 
 class LoginViewModel @Inject constructor(
     context: Context,
+    private val validateAccessToken: ValidateAccessToken,
     private val validateLogin: ValidateLogin
 ) : ViewModel(), LoginController {
 
@@ -22,7 +24,9 @@ class LoginViewModel @Inject constructor(
     private val state = LoginState(context.resources)
 
     override fun start() {
-        liveData.postValue(state)
+        viewModelScope.launch {
+            launch { validateAccessToken() }
+        }
     }
 
     override fun onClientIdChanged(text: CharSequence?) {
@@ -44,6 +48,21 @@ class LoginViewModel @Inject constructor(
         viewModelScope.launch {
             launch { validateLogin() }
         }
+    }
+
+    private suspend fun validateAccessToken(
+    ) = withContext(Dispatchers.IO) {
+
+        validateAccessToken(Unit)
+            .onSuccess {
+                state.successValidateAccessToken()
+                liveData.postValue(state)
+            }
+            .onFailure {
+                cancel()
+                state.failureValidateAccessToken()
+                liveData.postValue(state)
+            }
     }
 
     private suspend fun validateLogin(
