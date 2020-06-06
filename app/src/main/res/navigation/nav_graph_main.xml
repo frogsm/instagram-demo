@@ -26,5 +26,16 @@
         android:id="@+id/loginFragment"
         android:name="com.frogsm.instagram_demo.ui.login.LoginFragment"
         android:label="LoginFragment"
-        tools:layout="@layout/fragment_login" />
+        tools:layout="@layout/fragment_login">
+
+        <action
+            android:id="@+id/action_loginFragment_to_tokenFragment"
+            app:destination="@id/tokenFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/tokenFragment"
+        android:name="com.frogsm.instagram_demo.ui.token.TokenFragment"
+        android:label="TokenFragment"
+        tools:layout="@layout/fragment_token" />
 </navigation>
