@@ -6,11 +6,13 @@ import com.frogsm.instagram_demo.data.util.MoshiCreator
 import com.frogsm.instagram_demo.data.util.ServiceCreator
 import dagger.Module
 import dagger.Provides
+import javax.inject.Singleton
 
 @Module
 class ApiModule {
 
     @Provides
+    @Singleton
     fun providesAuthorizationApi(
         context: Context,
         moshiCreator: MoshiCreator,
@@ -22,6 +24,7 @@ class ApiModule {
     )
 
     @Provides
+    @Singleton
     fun providesUserContentsApi(
         context: Context,
         moshiCreator: MoshiCreator,
