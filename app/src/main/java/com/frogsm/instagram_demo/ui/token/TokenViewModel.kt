@@ -1,10 +1,13 @@
 package com.frogsm.instagram_demo.ui.token
 
-import com.frogsm.instagram_demo.ui.base.BaseViewModel
+import androidx.lifecycle.ViewModel
+import javax.inject.Inject
 
-class TokenViewModel : BaseViewModel() {
+class TokenViewModel @Inject constructor(
 
-    override fun start() {
+) : ViewModel(), TokenController {
+
+    override fun start(clientId: String, redirectUri: String) {
 
     }
 }
