@@ -2,6 +2,7 @@ package com.frogsm.instagram_demo.di.component
 
 import android.content.Context
 import com.frogsm.instagram_demo.InstagramApplication
+import com.frogsm.instagram_demo.data.DataModule
 import com.frogsm.instagram_demo.ui.MainActivityModule
 import dagger.BindsInstance
 import dagger.Component
@@ -12,6 +13,7 @@ import javax.inject.Singleton
 @Singleton
 @Component(
     modules = [
+        DataModule::class,
         MainActivityModule::class,
         AndroidSupportInjectionModule::class
     ]
