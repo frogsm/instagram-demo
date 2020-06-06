@@ -30,9 +30,11 @@ dependencies {
 
     implementation deps.kotlin.stdlib
 
-    implementation deps.androidx.core
+    implementation deps.androidx.core_ktx
     implementation deps.androidx.appcompat
-    implementation deps.androidx.lifecycle
+    implementation deps.androidx.activity_ktx
+    implementation deps.androidx.fragment_ktx
+    implementation deps.androidx.lifecycle_ktx
     implementation deps.androidx.constraint_layout
 
     implementation deps.facebook.sdk

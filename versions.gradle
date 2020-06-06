@@ -8,6 +8,8 @@ versions.kotlin = "1.3.72"
 // androidx
 versions.core = "1.3.0"
 versions.appcompat = "1.1.0"
+versions.activity = "1.1.0"
+versions.fragment = "1.2.4"
 versions.lifecycle = "2.2.0"
 versions.navigation = "2.2.2"
 versions.constraint_layout = "1.1.3"
@@ -50,9 +52,11 @@ deps.kotlin = kotlin
 
 
 def androidx = [:]
-androidx.core = "androidx.core:core-ktx:$versions.core"
+androidx.core_ktx = "androidx.core:core-ktx:$versions.core"
 androidx.appcompat = "androidx.appcompat:appcompat:$versions.appcompat"
-androidx.lifecycle = "androidx.lifecycle:lifecycle-viewmodel-ktx:$versions.lifecycle"
+androidx.activity_ktx = "androidx.activity:activity-ktx:$versions.activity"
+androidx.fragment_ktx = "androidx.fragment:fragment-ktx:$versions.fragment"
+androidx.lifecycle_ktx = "androidx.lifecycle:lifecycle-viewmodel-ktx:$versions.lifecycle"
 androidx.constraint_layout = "androidx.constraintlayout:constraintlayout:$versions.constraint_layout"
 deps.androidx = androidx
 
