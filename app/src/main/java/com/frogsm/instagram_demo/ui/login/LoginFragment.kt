@@ -1,26 +1,42 @@
 package com.frogsm.instagram_demo.ui.login
 
 import android.os.Bundle
+import android.text.SpannableStringBuilder
 import android.view.View
 import android.view.inputmethod.EditorInfo
+import androidx.core.widget.doAfterTextChanged
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.observe
 import com.frogsm.instagram_demo.R
 import com.frogsm.instagram_demo.extensions.hideKeyboard
+import com.frogsm.instagram_demo.ui.ViewModelFactory
 import com.frogsm.instagram_demo.ui.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_login.*
+import javax.inject.Inject
 
 class LoginFragment : BaseFragment(R.layout.fragment_login) {
+
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
+
+    private val viewModel by viewModels<LoginViewModel> { viewModelFactory }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initUi()
         initBinding()
+        viewModel.start()
     }
 
     private fun initUi() {
+        clientIdEditBox.doAfterTextChanged { text ->
+            viewModel.onClientIdChanged(text)
+        }
 
-    }
+        redirectUriEditBox.doAfterTextChanged { text ->
+            viewModel.onRedirectUriChanged(text)
+        }
 
-    private fun initBinding() {
         redirectUriEditBox.setOnEditorActionListener { v, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 hideKeyboard()
@@ -32,7 +48,19 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
         }
 
         loginButton.setOnClickListener {
+            viewModel.onLoginButtonClicked()
+        }
+    }
 
+    private fun initBinding() {
+        viewModel.liveData.observe(viewLifecycleOwner) { state ->
+            clientIdEditBox
+                .takeIf { it.text.toString() != state.clientId }
+                ?.run { text = SpannableStringBuilder(state.clientId) }
+
+            redirectUriEditBox
+                .takeIf { it.text.toString() != state.redirectUri }
+                ?.run { text = SpannableStringBuilder(state.redirectUri) }
         }
     }
 
