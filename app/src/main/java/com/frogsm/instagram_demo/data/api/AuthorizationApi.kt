@@ -22,9 +22,9 @@ interface AuthorizationApi {
     @POST("/oauth/access_token")
     suspend fun getAccessToken(
         @Query("client_id") clientId: String,
-        @Query("client_secret") clientSecret: String,
-        @Query("code") code: String,
-        @Query("grant_type") grantType: String,
-        @Query("redirect_uri") redirectUri: String
+        @Query("client_secret") clientSecretId: String,
+        @Query("redirect_uri") redirectUri: String,
+        @Query("code") authorizeCode: String,
+        @Query("grant_type") grantType: String
     ): AccessTokenData
 }
