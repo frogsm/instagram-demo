@@ -10,7 +10,9 @@ import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 import kotlin.reflect.KClass
 
-class ServiceCreator @Inject constructor() {
+class ServiceCreator @Inject constructor(
+    private val tokenInterceptor: TokenInterceptor
+) {
 
     fun <T : Any> createService(
         serviceClass: KClass<T>,
@@ -35,6 +37,7 @@ class ServiceCreator @Inject constructor() {
 
         return OkHttpClient.Builder()
             .addInterceptor(logInterceptor)
+            .addInterceptor(tokenInterceptor)
             .apply {
                 readTimeout(60, TimeUnit.SECONDS)
                 writeTimeout(60, TimeUnit.SECONDS)
