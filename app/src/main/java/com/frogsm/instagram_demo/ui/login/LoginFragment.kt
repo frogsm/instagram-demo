@@ -21,7 +21,7 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
     }
 
     private fun initBinding() {
-        passwordEditBox.setOnEditorActionListener { v, actionId, _ ->
+        redirectUriEditBox.setOnEditorActionListener { v, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 hideKeyboard()
                 loginButton.performClick()
