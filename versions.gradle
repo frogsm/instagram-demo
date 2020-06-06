@@ -64,7 +64,7 @@ deps.androidx = androidx
 
 def navigation = [:]
 navigation.ui_ktx = "androidx.navigation:navigation-ui-ktx:$versions.navigation"
-navigation.fragmnet_ktx = "androidx.navigation:navigation-fragment-ktx:$versions.navigation"
+navigation.fragment_ktx = "androidx.navigation:navigation-fragment-ktx:$versions.navigation"
 deps.navigation = navigation
 
 
