@@ -19,8 +19,11 @@ class TokenViewModel @Inject constructor(
 
     override fun start(
         clientId: String,
+        clientSecretId: String,
         redirectUri: String
     ) {
+        state.initialize(clientId, clientSecretId, redirectUri)
+
         viewModelScope.launch {
             launch { createOauthAuthorizeUri(clientId, redirectUri) }
         }

@@ -46,6 +46,9 @@
             android:name="clientId"
             app:argType="string" />
         <argument
+            android:name="clientSecretId"
+            app:argType="string" />
+        <argument
             android:name="redirectUri"
             app:argType="string" />
     </fragment>

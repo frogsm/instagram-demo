@@ -76,6 +76,7 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
             state.navigateToken?.observeOnlyOnce {
                 val action = LoginFragmentDirections.actionLoginFragmentToTokenFragment(
                     clientId = state.clientId,
+                    clientSecretId = state.clientSecretId,
                     redirectUri = state.redirectUri
                 )
                 findNavController().navigateSafely(action)

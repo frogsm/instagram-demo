@@ -28,7 +28,7 @@ class TokenFragment : BaseFragment(R.layout.fragment_token) {
         super.onViewCreated(view, savedInstanceState)
         initUi()
         initBinding()
-        viewModel.start(args.clientId, args.redirectUri)
+        viewModel.start(args.clientId, args.clientSecretId, args.redirectUri)
     }
 
     private fun initUi() {
