@@ -9,7 +9,7 @@ import dagger.android.HasAndroidInjector
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
 
-open class BaseFragment(@LayoutRes layoutRes: Int) : Fragment(layoutRes), HasAndroidInjector {
+abstract class BaseFragment(@LayoutRes layoutRes: Int) : Fragment(layoutRes), HasAndroidInjector {
 
     @Inject
     lateinit var mAndroidInjector: DispatchingAndroidInjector<Any>

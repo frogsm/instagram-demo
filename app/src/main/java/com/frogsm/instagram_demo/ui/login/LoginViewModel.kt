@@ -1,8 +1,12 @@
 package com.frogsm.instagram_demo.ui.login
 
-import androidx.lifecycle.ViewModel
+import com.frogsm.instagram_demo.ui.base.BaseViewModel
 import javax.inject.Inject
 
 class LoginViewModel @Inject constructor(
-) : ViewModel() {
+) : BaseViewModel() {
+
+    override fun start() {
+
+    }
 }
