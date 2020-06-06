@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 apply plugin: "androidx.navigation.safeargs.kotlin"
 
 android {
@@ -36,6 +37,12 @@ dependencies {
     implementation deps.androidx.fragment_ktx
     implementation deps.androidx.lifecycle_ktx
     implementation deps.androidx.constraint_layout
+
+    implementation deps.dagger.base
+    implementation deps.dagger.android
+    implementation deps.dagger.android_support
+    kapt deps.dagger.compiler
+    kapt deps.dagger.compiler_processor
 
     implementation deps.facebook.sdk
 
