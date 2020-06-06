@@ -22,6 +22,9 @@ versions.espresso = "3.2.0"
 // etc
 versions.material = "1.1.0"
 versions.dagger = "2.28"
+versions.retrofit = "2.9.0"
+versions.okhttp = "4.7.2"
+versions.moshi = "1.9.2"
 versions.facebook = "[4,5)"
 
 ext.versions = versions
@@ -88,6 +91,24 @@ dagger.android_support = "com.google.dagger:dagger-android-support:$versions.dag
 dagger.compiler = "com.google.dagger:dagger-compiler:$versions.dagger"
 dagger.compiler_processor = "com.google.dagger:dagger-android-processor:$versions.dagger"
 deps.dagger = dagger
+
+
+def retrofit = [:]
+retrofit.base = "com.squareup.retrofit2:retrofit:$versions.retrofit"
+retrofit.convert_moshi = "com.squareup.retrofit2:converter-moshi:$versions.retrofit"
+deps.retrofit = retrofit
+
+
+def okhttp = [:]
+okhttp.logging_interceptor = "com.squareup.okhttp3:logging-interceptor:$versions.okhttp"
+deps.okhttp = okhttp
+
+
+def moshi = [:]
+moshi.kotlin = "com.squareup.moshi:moshi-kotlin:$versions.moshi"
+moshi.kotlin_codegen = "com.squareup.moshi:moshi-kotlin-codegen:$versions.moshi"
+deps.moshi = moshi
+
 
 def facebook = [:]
 facebook.base = "com.facebook.android:facebook-android-sdk:$versions.facebook"
