@@ -55,7 +55,7 @@ class TokenFragment : BaseFragment(R.layout.fragment_token) {
                     return when {
                         url.startsWith(context.getString(R.string.redirect_url)) -> {
                             val code = uri.getQueryParameter("code")
-                            viewModel.onAuthorizeCodeObtained(code)
+                            code?.run { viewModel.onAuthorizeCodeObtained(code) }
                             true
                         }
                         else -> {
