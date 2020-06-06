@@ -4,9 +4,13 @@ import com.frogsm.instagram_demo.ui.base.BaseViewModel
 import javax.inject.Inject
 
 class LoginViewModel @Inject constructor(
-) : BaseViewModel() {
+) : BaseViewModel(), LoginController {
 
     override fun start() {
+
+    }
+
+    override fun onLoginButtonClicked() {
 
     }
 }
