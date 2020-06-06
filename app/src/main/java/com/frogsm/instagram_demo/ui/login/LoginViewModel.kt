@@ -16,10 +16,6 @@ class LoginViewModel @Inject constructor(
         liveData.postValue(state)
     }
 
-    override fun onLoginButtonClicked() {
-
-    }
-
     override fun onClientIdChanged(text: CharSequence?) {
         state.onClientIdChanged(text)
         liveData.postValue(state)
@@ -27,6 +23,11 @@ class LoginViewModel @Inject constructor(
 
     override fun onRedirectUriChanged(text: CharSequence?) {
         state.onRedirectUriChanged(text)
+        liveData.postValue(state)
+    }
+
+    override fun onLoginButtonClicked() {
+        state.onLoginButtonClicked()
         liveData.postValue(state)
     }
 }

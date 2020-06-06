@@ -7,8 +7,10 @@ import android.view.inputmethod.EditorInfo
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.observe
+import androidx.navigation.fragment.findNavController
 import com.frogsm.instagram_demo.R
 import com.frogsm.instagram_demo.extensions.hideKeyboard
+import com.frogsm.instagram_demo.extensions.navigateSafely
 import com.frogsm.instagram_demo.ui.ViewModelFactory
 import com.frogsm.instagram_demo.ui.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_login.*
@@ -61,6 +63,14 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
             redirectUriEditBox
                 .takeIf { it.text.toString() != state.redirectUri }
                 ?.run { text = SpannableStringBuilder(state.redirectUri) }
+
+            state.navigateToken?.observeOnlyOnce {
+                val action = LoginFragmentDirections.actionLoginFragmentToTokenFragment(
+                    clientId = state.clientId,
+                    redirectUri = state.redirectUri
+                )
+                findNavController().navigateSafely(action)
+            }
         }
     }
 
