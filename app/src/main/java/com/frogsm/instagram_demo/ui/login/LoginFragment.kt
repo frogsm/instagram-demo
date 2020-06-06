@@ -13,6 +13,7 @@ import com.frogsm.instagram_demo.extensions.hideKeyboard
 import com.frogsm.instagram_demo.extensions.navigateSafely
 import com.frogsm.instagram_demo.ui.ViewModelFactory
 import com.frogsm.instagram_demo.ui.base.BaseFragment
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_login.*
 import javax.inject.Inject
 
@@ -70,6 +71,10 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
                     redirectUri = state.redirectUri
                 )
                 findNavController().navigateSafely(action)
+            }
+
+            state.showSnackBar?.observeOnlyOnce {
+                Snackbar.make(requireView(), it, Snackbar.LENGTH_LONG).show()
             }
         }
     }

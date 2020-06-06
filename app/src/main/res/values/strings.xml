@@ -19,4 +19,9 @@
 
     <!-- Word -->
     <string name="login">로그인</string>
+
+    <!-- Error -->
+    <string name="common_error">오류가 발생했습니다.</string>
+    <string name="error_invalidate_uri">형식이 맞지 않은 URI 입니다.</string>
+    <string name="error_not_founded_slash">URI 맨 뒤에 슬래시(\'\/\')를 붙여주세요.</string>
 </resources>
