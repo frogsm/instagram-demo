@@ -25,6 +25,18 @@ class ApiModule {
 
     @Provides
     @Singleton
+    fun providesUserApi(
+        context: Context,
+        moshiCreator: MoshiCreator,
+        serviceCreator: ServiceCreator
+    ): UserApi = serviceCreator.createService(
+        UserApi::class,
+        context.getString(R.string.user_contents_host),
+        moshiCreator.createMoshi()
+    )
+
+    @Provides
+    @Singleton
     fun providesUserContentsApi(
         context: Context,
         moshiCreator: MoshiCreator,
