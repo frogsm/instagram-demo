@@ -13,6 +13,7 @@ import androidx.navigation.fragment.navArgs
 import com.frogsm.instagram_demo.R
 import com.frogsm.instagram_demo.ui.ViewModelFactory
 import com.frogsm.instagram_demo.ui.base.BaseFragment
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_token.*
 import javax.inject.Inject
 
@@ -72,6 +73,14 @@ class TokenFragment : BaseFragment(R.layout.fragment_token) {
 
             state.displayUrl?.observeOnlyOnce {
                 webView.loadUrl(it)
+            }
+
+            state.showSnackBar?.observeOnlyOnce {
+                Snackbar.make(requireView(), it, Snackbar.LENGTH_LONG).show()
+            }
+
+            state.navigateBack?.observeOnlyOnce {
+
             }
         }
     }

@@ -26,4 +26,6 @@
     <string name="common_error">오류가 발생했습니다.</string>
     <string name="error_invalidate_uri">형식이 맞지 않은 URI 입니다.</string>
     <string name="error_not_founded_slash">URI 맨 뒤에 슬래시(\'\/\')를 붙여주세요.</string>
+    <string name="error_oauth_authorize_uri">Oauth 인증 URI 생성에 실패했습니다.</string>
+    <string name="error_access_token_obtain">액세스 토큰 생성이 실패했습니다.</string>
 </resources>
