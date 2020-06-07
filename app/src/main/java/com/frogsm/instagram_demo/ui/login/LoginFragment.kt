@@ -88,7 +88,10 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
 
             state.navigateMediaCollection?.observeOnlyOnce {
                 val action = LoginFragmentDirections.actionLoginFragmentToMediaCollectionFragment()
-                findNavController().navigateSafely(action)
+                findNavController().run {
+                    graph.startDestination = R.id.mediaCollectionFragment
+                    navigateSafely(action)
+                }
             }
         }
     }
