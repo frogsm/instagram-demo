@@ -20,7 +20,7 @@ abstract class BaseViewModel(
         httpException?.run {
             when (code()) {
                 // 토큰이 만료되거나 토큰정보가 잘못 되었을때, 화면 재시작
-                400 -> globalListener.restartActivity()
+                400 -> globalListener.onAllErrorsForToken()
             }
         }
 

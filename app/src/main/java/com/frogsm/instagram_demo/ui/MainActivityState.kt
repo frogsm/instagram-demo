@@ -10,7 +10,11 @@ class MainActivityState(
     override var restartActivity: Event<Unit>? = null
 ) : MainActivityStateBindable {
 
-    fun restartActivity() {
+    fun successExpireLogin() {
         restartActivity = Event(Unit)
+    }
+
+    fun failureExpireLogin() {
+
     }
 }
