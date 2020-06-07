@@ -1,5 +1,7 @@
 package com.frogsm.instagram_demo.data.token
 
+import com.frogsm.instagram_demo.data.api.AuthorizationApi
+import com.frogsm.instagram_demo.data.preferences.Preferences
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -8,19 +10,13 @@ import javax.inject.Singleton
 class TokenDataSourceModule {
 
     @Provides
+    @Singleton
     fun providesLocalDataSource(
-        dataSource: TokenLocalDataSource
-    ): TokenLocalDataSource = dataSource
+        preferences: Preferences
+    ): TokenLocalDataSource = TokenLocalDataSource(preferences)
 
     @Provides
     fun providesRemoteDataSource(
-        dataSource: TokenRemoteDataSource
-    ): TokenRemoteDataSource = dataSource
-
-    @Provides
-    @Singleton
-    fun providesTokenDataSource(
-        local: TokenLocalDataSource,
-        remote: TokenRemoteDataSource
-    ): TokenDataSource = TokenDataSource(local, remote)
+        authorizationApi: AuthorizationApi
+    ): TokenRemoteDataSource = TokenRemoteDataSource(authorizationApi)
 }

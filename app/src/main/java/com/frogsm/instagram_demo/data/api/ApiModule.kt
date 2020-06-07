@@ -4,6 +4,7 @@ import android.content.Context
 import com.frogsm.instagram_demo.R
 import com.frogsm.instagram_demo.data.util.MoshiCreator
 import com.frogsm.instagram_demo.data.util.ServiceCreator
+import com.frogsm.instagram_demo.data.util.TokenInterceptor
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -46,4 +47,10 @@ class ApiModule {
         context.getString(R.string.user_contents_host),
         moshiCreator.createMoshi()
     )
+
+    @Provides
+    @Singleton
+    fun providesServiceCreator(
+        tokenInterceptor: TokenInterceptor
+    ): ServiceCreator = ServiceCreator(tokenInterceptor)
 }
