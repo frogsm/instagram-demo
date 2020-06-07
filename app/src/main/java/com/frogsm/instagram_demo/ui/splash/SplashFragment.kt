@@ -39,6 +39,14 @@ class SplashFragment : BaseFragment(R.layout.fragment_splash) {
                     navigateSafely(action)
                 }
             }
+
+            state.navigateMediaCollection?.observeOnlyOnce {
+                val action = SplashFragmentDirections.actionSplashFragmentToMediaCollectionFragment()
+                findNavController().run {
+                    graph.startDestination = R.id.mediaCollectionFragment
+                    navigateSafely(action)
+                }
+            }
         }
     }
 

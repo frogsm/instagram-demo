@@ -6,8 +6,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.frogsm.instagram_demo.R
-import com.frogsm.instagram_demo.domain.login.ValidateAccessToken
 import com.frogsm.instagram_demo.domain.login.ValidateLogin
+import com.frogsm.instagram_demo.domain.token.ValidateAccessToken
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
