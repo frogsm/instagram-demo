@@ -12,9 +12,9 @@ import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.frogsm.instagram_demo.R
+import com.frogsm.instagram_demo.extensions.showLongSnackBar
 import com.frogsm.instagram_demo.ui.ViewModelFactory
 import com.frogsm.instagram_demo.ui.base.BaseFragment
-import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_token.*
 import javax.inject.Inject
 
@@ -77,7 +77,7 @@ class TokenFragment : BaseFragment(R.layout.fragment_token) {
             }
 
             state.showSnackBar?.observeOnlyOnce {
-                Snackbar.make(requireView(), it, Snackbar.LENGTH_LONG).show()
+                showLongSnackBar(it)
             }
 
             state.navigateBack?.observeOnlyOnce {
