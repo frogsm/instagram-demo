@@ -3,7 +3,6 @@ package com.frogsm.instagram_demo.di.component
 import android.content.Context
 import com.frogsm.instagram_demo.InstagramApplication
 import com.frogsm.instagram_demo.data.DataModule
-import com.frogsm.instagram_demo.ui.MainActivityModule
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjector
@@ -14,7 +13,7 @@ import javax.inject.Singleton
 @Component(
     modules = [
         DataModule::class,
-        MainActivityModule::class,
+        ActivityModule::class,
         AndroidSupportInjectionModule::class
     ]
 )
