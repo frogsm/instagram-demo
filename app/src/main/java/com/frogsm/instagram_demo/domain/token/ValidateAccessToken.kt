@@ -1,13 +1,11 @@
 package com.frogsm.instagram_demo.domain.token
 
-import com.frogsm.instagram_demo.data.token.TokenRepository
 import com.frogsm.instagram_demo.data.user.UserRepository
 import com.frogsm.instagram_demo.domain.usecase.SuspendUseCase
 import javax.inject.Inject
 
 class ValidateAccessToken @Inject constructor(
-    private val userRepository: UserRepository,
-    private val tokenRepository: TokenRepository
+    private val userRepository: UserRepository
 ) : SuspendUseCase<Unit, Unit> {
 
     override suspend fun invoke(param: Unit): Result<Unit> = try {
