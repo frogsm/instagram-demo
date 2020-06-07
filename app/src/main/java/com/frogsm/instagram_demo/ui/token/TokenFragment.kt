@@ -9,6 +9,7 @@ import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.observe
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.frogsm.instagram_demo.R
 import com.frogsm.instagram_demo.ui.ViewModelFactory
@@ -80,7 +81,7 @@ class TokenFragment : BaseFragment(R.layout.fragment_token) {
             }
 
             state.navigateBack?.observeOnlyOnce {
-
+                findNavController().popBackStack()
             }
         }
     }
