@@ -38,12 +38,12 @@ class ApiModule {
 
     @Provides
     @Singleton
-    fun providesUserContentsApi(
+    fun providesMediaApi(
         context: Context,
         moshiCreator: MoshiCreator,
         serviceCreator: ServiceCreator
-    ): UserContentsApi = serviceCreator.createService(
-        UserContentsApi::class,
+    ): MediaApi = serviceCreator.createService(
+        MediaApi::class,
         context.getString(R.string.user_contents_host),
         moshiCreator.createMoshi()
     )
