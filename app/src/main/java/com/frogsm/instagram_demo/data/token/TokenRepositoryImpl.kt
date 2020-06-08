@@ -14,15 +14,13 @@ class TokenRepositoryImpl @Inject constructor(
         authorizeCode: String,
         grantType: String
     ) {
-        val tokenData = tokenDataSource.createAccessToken(
+        tokenDataSource.createAccessToken(
             clientId = clientId,
             clientSecretId = clientSecretId,
             redirectUri = redirectUri,
             authorizeCode = authorizeCode,
             grantType = grantType
         )
-
-        tokenDataSource.updateAccessToken(tokenData)
     }
 
     override suspend fun getAccessToken(): AccessToken? {

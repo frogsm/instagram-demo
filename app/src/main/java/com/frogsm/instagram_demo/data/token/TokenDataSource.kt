@@ -14,13 +14,16 @@ class TokenDataSource @Inject constructor(
         authorizeCode: String,
         grantType: String
     ): AccessTokenData {
-        return remoteDataSource.createAccessToken(
+        val tokenData = remoteDataSource.createAccessToken(
             clientId = clientId,
             clientSecretId = clientSecretId,
             redirectUri = redirectUri,
             authorizeCode = authorizeCode,
             grantType = grantType
         )
+
+        localDataSource.updateAccessToken(tokenData)
+        return tokenData
     }
 
     suspend fun getAccessToken(): AccessToken? {
