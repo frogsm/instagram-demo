@@ -7,13 +7,17 @@ class UserRepositoryImpl @Inject constructor(
     private val userDataSource: UserDataSource
 ) : UserRepository {
 
-    override suspend fun getUser(): User {
-        val data = userDataSource.getUser()
+    override suspend fun login(): User {
+        val user = userDataSource.getUser()
 
         return User(
-            id = data.id,
-            name = data.username,
-            mediaCount = data.media_count
+            id = user.id,
+            name = user.username,
+            mediaCount = user.media_count
         )
+    }
+
+    override suspend fun logout() {
+        userDataSource.clearUser()
     }
 }

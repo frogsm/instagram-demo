@@ -13,7 +13,7 @@ class ValidateAccessToken @Inject constructor(
          * 토큰이 만료되지 않았다면, 유스케이스 통과
          * 토큰이 만료되었다면, 글로벌 핸들러로 처리하기 때문에 별도로 처리하지 않음
          */
-        userRepository.getUser()
+        userRepository.login()
 
         Result.success(Unit)
     } catch (throwable: Throwable) {
