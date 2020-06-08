@@ -1,14 +1,17 @@
 package com.frogsm.instagram_demo.domain.login
 
 import com.frogsm.instagram_demo.data.token.TokenRepository
+import com.frogsm.instagram_demo.data.user.UserRepository
 import com.frogsm.instagram_demo.domain.usecase.SuspendUseCase
 import javax.inject.Inject
 
 class ExpireLogin @Inject constructor(
+    private val userRepository: UserRepository,
     private val tokenRepository: TokenRepository
 ) : SuspendUseCase<Unit, Unit> {
 
     override suspend fun invoke(param: Unit): Result<Unit> = try {
+        userRepository.logout()
         tokenRepository.clearToken()
 
         Result.success(Unit)
