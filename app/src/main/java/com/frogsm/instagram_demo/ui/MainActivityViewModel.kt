@@ -3,7 +3,7 @@ package com.frogsm.instagram_demo.ui
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.frogsm.instagram_demo.domain.login.ExpireLogin
+import com.frogsm.instagram_demo.domain.usecase.login.ExpireLogin
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch

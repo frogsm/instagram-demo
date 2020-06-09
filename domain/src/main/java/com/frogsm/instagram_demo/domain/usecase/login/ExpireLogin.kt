@@ -1,4 +1,4 @@
-package com.frogsm.instagram_demo.domain.login
+package com.frogsm.instagram_demo.domain.usecase.login
 
 import com.frogsm.instagram_demo.domain.repository.TokenRepository
 import com.frogsm.instagram_demo.domain.repository.UserRepository

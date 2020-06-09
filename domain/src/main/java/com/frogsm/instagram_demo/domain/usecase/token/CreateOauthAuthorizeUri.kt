@@ -1,4 +1,4 @@
-package com.frogsm.instagram_demo.domain.token
+package com.frogsm.instagram_demo.domain.usecase.token
 
 import com.frogsm.instagram_demo.domain.entity.AuthorizeUri
 import com.frogsm.instagram_demo.domain.repository.TokenRepository

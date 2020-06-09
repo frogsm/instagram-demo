@@ -1,4 +1,4 @@
-package com.frogsm.instagram_demo.domain.media
+package com.frogsm.instagram_demo.domain.usecase.media
 
 import com.frogsm.instagram_demo.domain.entity.MediaCollection
 import com.frogsm.instagram_demo.domain.repository.MediaRepository

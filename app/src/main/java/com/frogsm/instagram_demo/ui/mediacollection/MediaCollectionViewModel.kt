@@ -3,8 +3,8 @@ package com.frogsm.instagram_demo.ui.mediacollection
 import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.frogsm.instagram_demo.domain.media.GetMediaCollection
-import com.frogsm.instagram_demo.domain.user.GetUser
+import com.frogsm.instagram_demo.domain.usecase.media.GetMediaCollection
+import com.frogsm.instagram_demo.domain.usecase.user.GetUser
 import com.frogsm.instagram_demo.ui.GlobalListener
 import com.frogsm.instagram_demo.ui.base.BaseViewModel
 import com.frogsm.instagram_demo.ui.mapper.mapToMediaCollectionItem

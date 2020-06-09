@@ -1,4 +1,4 @@
-package com.frogsm.instagram_demo.domain.user
+package com.frogsm.instagram_demo.domain.usecase.user
 
 import com.frogsm.instagram_demo.domain.entity.User
 import com.frogsm.instagram_demo.domain.repository.UserRepository

@@ -4,8 +4,8 @@ import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.frogsm.instagram_demo.domain.token.CreateAccessToken
-import com.frogsm.instagram_demo.domain.token.CreateOauthAuthorizeUri
+import com.frogsm.instagram_demo.domain.usecase.token.CreateAccessToken
+import com.frogsm.instagram_demo.domain.usecase.token.CreateOauthAuthorizeUri
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
