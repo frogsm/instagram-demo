@@ -17,8 +17,8 @@ interface LoginStateBindable {
 
 class LoginState(
     private val resources: Resources,
-    override var clientId: String = resources.getString(R.string.client_id),
-    override var clientSecretId: String = resources.getString(R.string.client_secret_id),
+    override var clientId: String = resources.getString(R.string.user_id),
+    override var clientSecretId: String = resources.getString(R.string.user_secret_id),
     override var redirectUri: String = resources.getString(R.string.redirect_url),
     override var showSnackBar: Event<String>? = null,
     override var navigateToken: Event<Unit>? = null,
