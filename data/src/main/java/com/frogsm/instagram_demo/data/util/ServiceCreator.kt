@@ -1,6 +1,6 @@
 package com.frogsm.instagram_demo.data.util
 
-import com.frogsm.instagram_demo.BuildConfig
+import com.frogsm.instagram_demo.data.BuildConfig
 import com.squareup.moshi.Moshi
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor

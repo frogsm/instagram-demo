@@ -1,6 +1,7 @@
 package com.frogsm.instagram_demo.data.user
 
 import com.frogsm.instagram_demo.data.api.UserApi
+import com.frogsm.instagram_demo.domain.repository.UserRepository
 import dagger.Binds
 import dagger.Module
 import dagger.Provides

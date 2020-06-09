@@ -2,6 +2,7 @@ package com.frogsm.instagram_demo.data.token
 
 import com.frogsm.instagram_demo.data.api.AuthorizationApi
 import com.frogsm.instagram_demo.data.preferences.Preferences
+import com.frogsm.instagram_demo.domain.repository.TokenRepository
 import dagger.Binds
 import dagger.Module
 import dagger.Provides

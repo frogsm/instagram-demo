@@ -1,7 +1,7 @@
 package com.frogsm.instagram_demo.domain.media
 
-import com.frogsm.instagram_demo.data.media.MediaRepository
 import com.frogsm.instagram_demo.domain.entity.MediaCollection
+import com.frogsm.instagram_demo.domain.repository.MediaRepository
 import com.frogsm.instagram_demo.domain.usecase.SuspendUseCase
 import javax.inject.Inject
 

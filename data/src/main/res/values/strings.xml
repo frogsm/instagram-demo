@@ -1,0 +1,5 @@
+<resources>
+    <!-- API Host -->
+    <string name="authorization_host">https://api.instagram.com</string>
+    <string name="user_contents_host">https://graph.instagram.com</string>
+</resources>

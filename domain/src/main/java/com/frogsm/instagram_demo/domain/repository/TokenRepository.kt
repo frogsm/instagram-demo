@@ -1,4 +1,4 @@
-package com.frogsm.instagram_demo.data.token
+package com.frogsm.instagram_demo.domain.repository
 
 import com.frogsm.instagram_demo.domain.entity.AccessToken
 

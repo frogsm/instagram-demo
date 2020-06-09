@@ -1,6 +1,7 @@
 package com.frogsm.instagram_demo.data.user
 
 import com.frogsm.instagram_demo.domain.entity.User
+import com.frogsm.instagram_demo.domain.repository.UserRepository
 import javax.inject.Inject
 
 class UserRepositoryImpl @Inject constructor(

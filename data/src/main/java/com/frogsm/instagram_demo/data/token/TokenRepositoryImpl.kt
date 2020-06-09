@@ -1,6 +1,7 @@
 package com.frogsm.instagram_demo.data.token
 
 import com.frogsm.instagram_demo.domain.entity.AccessToken
+import com.frogsm.instagram_demo.domain.repository.TokenRepository
 import javax.inject.Inject
 
 class TokenRepositoryImpl @Inject constructor(
