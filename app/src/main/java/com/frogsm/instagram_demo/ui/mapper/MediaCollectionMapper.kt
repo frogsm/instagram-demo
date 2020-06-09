@@ -14,7 +14,7 @@ fun MediaCollection.mapToMediaCollectionItem(): List<MediaCollectionItem> {
                 )
             }
             MediaType.VIDEO -> {
-                MediaCollectionItem.Image(
+                MediaCollectionItem.Video(
                     index = index,
                     thumbnailUrl = media.thumbnailUrl ?: ""
                 )

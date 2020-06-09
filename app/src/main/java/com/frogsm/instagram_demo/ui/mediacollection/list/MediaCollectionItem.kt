@@ -21,6 +21,17 @@ sealed class MediaCollectionItem(
         }
     }
 
+    data class Video(
+        override val index: Int,
+        override val thumbnailUrl: String,
+        override val layoutId: Int = R.layout.item_media_collection_video
+    ) : MediaCollectionItem(index, thumbnailUrl, layoutId) {
+
+        override fun presentUi(delegate: MediaCollectionDelegate, view: View) {
+            delegate.initUi(this, view)
+        }
+    }
+
     data class Album(
         override val index: Int,
         override val thumbnailUrl: String,

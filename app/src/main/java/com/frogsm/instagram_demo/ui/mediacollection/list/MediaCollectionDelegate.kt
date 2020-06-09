@@ -3,11 +3,13 @@ package com.frogsm.instagram_demo.ui.mediacollection.list
 import javax.inject.Inject
 
 interface MediaCollectionDelegate
-    : ImageMediaCollectionDelegate, AlbumMediaCollectionDelegate
+    : ImageMediaCollectionDelegate, VideoMediaCollectionDelegate, AlbumMediaCollectionDelegate
 
 class MediaCollectionDelegateImpl @Inject constructor(
-    mediaCollectionImageDelegateImpl: ImageMediaCollectionDelegateImpl,
-    mediaCollectionAlbumDelegateImpl: AlbumMediaCollectionDelegateImpl
+    imageMediaCollectionDelegateImpl: ImageMediaCollectionDelegateImpl,
+    videoMediaCollectionDelegateImpl: VideoMediaCollectionDelegateImpl,
+    albumMediaCollectionDelegateImpl: AlbumMediaCollectionDelegateImpl
 ) : MediaCollectionDelegate,
-    ImageMediaCollectionDelegate by mediaCollectionImageDelegateImpl,
-    AlbumMediaCollectionDelegate by mediaCollectionAlbumDelegateImpl
+    ImageMediaCollectionDelegate by imageMediaCollectionDelegateImpl,
+    VideoMediaCollectionDelegate by videoMediaCollectionDelegateImpl,
+    AlbumMediaCollectionDelegate by albumMediaCollectionDelegateImpl
