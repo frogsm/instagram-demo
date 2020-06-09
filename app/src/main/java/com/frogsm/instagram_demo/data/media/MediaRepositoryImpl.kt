@@ -15,7 +15,7 @@ class MediaRepositoryImpl @Inject constructor(
                 Media(
                     id = it.id,
                     userName = it.username,
-                    caption = it.caption,
+                    caption = it.caption ?: "",
                     mediaType = when (it.media_type) {
                         MediaTypeData.IMAGE -> MediaType.IMAGE
                         MediaTypeData.VIDEO -> MediaType.VIDEO
