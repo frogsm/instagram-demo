@@ -40,7 +40,7 @@ class MediaCollectionViewModel @Inject constructor(
                 state.successGetMediaCollection(it)
                 liveData.postValue(state)
             }
-            .onFailure {
+            .onFailureAfterHttpExceptionHandle {
                 cancel()
             }
     }
