@@ -1,6 +1,8 @@
 package com.frogsm.instagram_demo.ui.mediacollection.list
 
 import android.view.View
+import com.frogsm.instagram_demo.extensions.displayImage
+import kotlinx.android.synthetic.main.item_media_collection_album.view.*
 import javax.inject.Inject
 
 interface AlbumMediaCollectionDelegate {
@@ -11,6 +13,10 @@ class AlbumMediaCollectionDelegateImpl @Inject constructor(
 ) : AlbumMediaCollectionDelegate {
 
     override fun initUi(item: MediaCollectionItem.Album, view: View) {
-
+        with(view) {
+            image.displayImage(item.thumbnailUrl) {
+                centerCrop()
+            }
+        }
     }
 }

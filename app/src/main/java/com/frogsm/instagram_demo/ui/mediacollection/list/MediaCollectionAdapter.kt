@@ -11,7 +11,7 @@ class MediaCollectionAdapter @Inject constructor(
     private val delegate: MediaCollectionDelegate
 ) : RecyclerView.Adapter<MediaCollectionViewHolder>() {
 
-    private val items = SortedList(
+    private val mediaCollectionItems = SortedList(
         MediaCollectionItem::class.java,
         object : SortedListAdapterCallback<MediaCollectionItem>(this) {
             override fun areItemsTheSame(
@@ -37,11 +37,15 @@ class MediaCollectionAdapter @Inject constructor(
         return MediaCollectionViewHolder(view)
     }
 
-    override fun getItemCount(): Int = items.size()
+    override fun getItemCount(): Int = mediaCollectionItems.size()
 
     override fun onBindViewHolder(holder: MediaCollectionViewHolder, position: Int) {
-        holder.onBind(delegate, items[position])
+        holder.onBind(delegate, mediaCollectionItems[position])
     }
 
-    override fun getItemViewType(position: Int): Int = items[position].layoutId
+    override fun getItemViewType(position: Int): Int = mediaCollectionItems[position].layoutId
+
+    fun replaceData(items: List<MediaCollectionItem>) {
+        mediaCollectionItems.replaceAll(items)
+    }
 }
