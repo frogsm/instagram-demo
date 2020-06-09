@@ -14,3 +14,15 @@ fun ImageView.displayImage(
         .apply(applyActions.invoke(RequestOptions()))
         .into(this)
 }
+
+fun ImageView.displayThumbnail(
+    uri: String,
+    applyActions: RequestOptions.() -> RequestOptions = { this }
+) {
+
+    Glide.with(this)
+        .load(uri)
+        .thumbnail(0.75f)
+        .apply(applyActions.invoke(RequestOptions()))
+        .into(this)
+}
