@@ -30,10 +30,6 @@ class MediaCollectionFragment : BaseFragment(R.layout.fragment_media_collection)
     }
 
     private fun initUi() {
-        testButton.setOnClickListener {
-            viewModel.start()
-        }
-
         collectionList.apply {
             adapter = mediaCollectionAdapter
             layoutManager = GridLayoutManager(requireContext(), 3)
