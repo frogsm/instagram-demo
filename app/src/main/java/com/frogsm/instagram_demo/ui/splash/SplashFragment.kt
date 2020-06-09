@@ -40,8 +40,10 @@ class SplashFragment : BaseFragment(R.layout.fragment_splash) {
                 }
             }
 
-            state.navigateMediaCollection?.observeOnlyOnce {
-                val action = SplashFragmentDirections.actionSplashFragmentToMediaCollectionFragment()
+            state.navigateMediaCollection?.observeOnlyOnce { userName ->
+                val action = SplashFragmentDirections.actionSplashFragmentToMediaCollectionFragment(
+                    userName = userName
+                )
                 findNavController().run {
                     graph.startDestination = R.id.mediaCollectionFragment
                     navigateSafely(action)

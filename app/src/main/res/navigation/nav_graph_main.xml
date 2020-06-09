@@ -77,5 +77,9 @@
         android:id="@+id/mediaCollectionFragment"
         android:name="com.frogsm.instagram_demo.ui.mediacollection.MediaCollectionFragment"
         android:label="MediaCollectionFragment"
-        tools:layout="@layout/fragment_media_collection" />
+        tools:layout="@layout/fragment_media_collection">
+        <argument
+            android:name="userName"
+            app:argType="string" />
+    </fragment>
 </navigation>

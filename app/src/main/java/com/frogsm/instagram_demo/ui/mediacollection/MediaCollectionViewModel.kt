@@ -20,7 +20,9 @@ class MediaCollectionViewModel @Inject constructor(
     val liveData = MutableLiveData<MediaCollectionStateBindable>()
     private val state = MediaCollectionState()
 
-    override fun start() {
+    override fun start(userName: String) {
+        state.initialize(userName)
+
         viewModelScope.launch {
             launch { getMediaCollection() }
         }

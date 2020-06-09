@@ -12,7 +12,7 @@ interface LoginStateBindable {
     var redirectUri: String
     var showSnackBar: Event<String>?
     var navigateToken: Event<Unit>?
-    var navigateMediaCollection: Event<Unit>?
+    var navigateMediaCollection: Event<String>?
 }
 
 class LoginState(
@@ -22,7 +22,7 @@ class LoginState(
     override var redirectUri: String = resources.getString(R.string.redirect_url),
     override var showSnackBar: Event<String>? = null,
     override var navigateToken: Event<Unit>? = null,
-    override var navigateMediaCollection: Event<Unit>? = null
+    override var navigateMediaCollection: Event<String>? = null
 ) : LoginStateBindable {
 
     fun onClientIdChanged(text: CharSequence?) {
@@ -37,11 +37,11 @@ class LoginState(
         redirectUri = text?.toString() ?: ""
     }
 
-    fun successValidateAccessToken() {
-        navigateMediaCollection = Event(Unit)
+    fun successGetUser(userName: String) {
+        navigateMediaCollection = Event(userName)
     }
 
-    fun failureValidateAccessToken() {
+    fun failureGetUser() {
 
     }
 

@@ -1,5 +1,5 @@
 package com.frogsm.instagram_demo.ui.mediacollection
 
 interface MediaCollectionController {
-    fun start()
+    fun start(userName: String)
 }

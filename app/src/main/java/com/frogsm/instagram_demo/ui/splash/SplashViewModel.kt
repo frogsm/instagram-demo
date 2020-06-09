@@ -3,7 +3,7 @@ package com.frogsm.instagram_demo.ui.splash
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.frogsm.instagram_demo.domain.token.ValidateAccessToken
+import com.frogsm.instagram_demo.domain.user.GetUser
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
@@ -11,7 +11,7 @@ import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class SplashViewModel @Inject constructor(
-    private val validateAccessToken: ValidateAccessToken
+    private val getUser: GetUser
 ) : ViewModel(), SplashController {
 
     val liveData = MutableLiveData<SplashStateBindable>()
@@ -19,21 +19,21 @@ class SplashViewModel @Inject constructor(
 
     override fun start() {
         viewModelScope.launch {
-            launch { validateAccessToken() }
+            launch { getUser() }
         }
     }
 
-    private suspend fun validateAccessToken(
+    private suspend fun getUser(
     ) = withContext(Dispatchers.IO) {
 
-        validateAccessToken(Unit)
+        getUser(Unit)
             .onSuccess {
-                state.successValidateAccessToken()
+                state.successGetUser(it.name)
                 liveData.postValue(state)
             }
             .onFailure {
                 cancel()
-                state.failureValidateAccessToken()
+                state.failureGetUser()
                 liveData.postValue(state)
             }
     }

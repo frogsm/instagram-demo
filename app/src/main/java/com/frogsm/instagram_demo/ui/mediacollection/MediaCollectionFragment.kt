@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.observe
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
 import com.frogsm.instagram_demo.R
 import com.frogsm.instagram_demo.ui.ViewModelFactory
@@ -18,6 +19,7 @@ class MediaCollectionFragment : BaseFragment(R.layout.fragment_media_collection)
     lateinit var viewModelFactory: ViewModelFactory
 
     private val viewModel by viewModels<MediaCollectionViewModel> { viewModelFactory }
+    private val args by navArgs<MediaCollectionFragmentArgs>()
 
     @Inject
     lateinit var mediaCollectionAdapter: MediaCollectionAdapter
@@ -26,7 +28,7 @@ class MediaCollectionFragment : BaseFragment(R.layout.fragment_media_collection)
         super.onViewCreated(view, savedInstanceState)
         initUi()
         initBinding()
-        viewModel.start()
+        viewModel.start(args.userName)
     }
 
     private fun initUi() {
@@ -38,9 +40,10 @@ class MediaCollectionFragment : BaseFragment(R.layout.fragment_media_collection)
     }
 
     private fun initBinding() {
-        viewModel.liveData.observe(viewLifecycleOwner) {
+        viewModel.liveData.observe(viewLifecycleOwner) { state ->
+            toolbar.title = state.toolbarTitle
 
-            mediaCollectionAdapter.replaceData(it.mediaCollectionItems)
+            mediaCollectionAdapter.replaceData(state.mediaCollectionItems)
         }
     }
 }
