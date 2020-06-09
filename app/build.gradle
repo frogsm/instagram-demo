@@ -69,6 +69,9 @@ dependencies {
 
     implementation deps.facebook.base
 
+    implementation deps.glide.base
+    kapt deps.glide.compiler
+
     testImplementation deps.test.junit
     androidTestImplementation deps.test.ext_junit
     androidTestImplementation deps.test.espresso
