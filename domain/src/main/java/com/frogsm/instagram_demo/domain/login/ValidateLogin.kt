@@ -1,14 +1,14 @@
 package com.frogsm.instagram_demo.domain.login
 
-import android.webkit.URLUtil
 import com.frogsm.instagram_demo.domain.usecase.SuspendUseCase
+import com.frogsm.instagram_demo.domain.util.URLValidator
 import javax.inject.Inject
 
 class ValidateLogin @Inject constructor(
 ) : SuspendUseCase<ValidateLogin.Request, Unit> {
 
     override suspend fun invoke(param: Request): Result<Unit> = try {
-        if (URLUtil.isValidUrl(param.redirectUri).not()) {
+        if (URLValidator.isValid(param.redirectUri).not()) {
             throw Exception.InvalidateRedirectUri
         }
 

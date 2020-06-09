@@ -1,7 +1,7 @@
 package com.frogsm.instagram_demo.domain.user
 
-import com.frogsm.instagram_demo.data.user.UserRepository
 import com.frogsm.instagram_demo.domain.entity.User
+import com.frogsm.instagram_demo.domain.repository.UserRepository
 import com.frogsm.instagram_demo.domain.usecase.SuspendUseCase
 import javax.inject.Inject
 

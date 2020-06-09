@@ -7,6 +7,21 @@ class TokenDataSource @Inject constructor(
     private val localDataSource: TokenLocalDataSource,
     private val remoteDataSource: TokenRemoteDataSource
 ) {
+
+    suspend fun getAuthorizeUri(
+        clientId: String,
+        redirectUri: String,
+        scope: String,
+        responseType: String
+    ): AuthorizeUriData {
+        return remoteDataSource.getAuthorizeUri(
+            clientId = clientId,
+            redirectUri = redirectUri,
+            scope = scope,
+            responseType = responseType
+        )
+    }
+
     suspend fun createAccessToken(
         clientId: String,
         clientSecretId: String,
