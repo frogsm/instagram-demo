@@ -7,10 +7,12 @@ import androidx.lifecycle.observe
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
 import com.frogsm.instagram_demo.R
+import com.frogsm.instagram_demo.extensions.showLongSnackBar
 import com.frogsm.instagram_demo.ui.ViewModelFactory
 import com.frogsm.instagram_demo.ui.base.BaseFragment
 import com.frogsm.instagram_demo.ui.mediacollection.list.MediaCollectionAdapter
 import kotlinx.android.synthetic.main.fragment_media_collection.*
+import kotlinx.android.synthetic.main.layout_user_card.*
 import javax.inject.Inject
 
 class MediaCollectionFragment : BaseFragment(R.layout.fragment_media_collection) {
@@ -44,6 +46,15 @@ class MediaCollectionFragment : BaseFragment(R.layout.fragment_media_collection)
             toolbar.title = state.toolbarTitle
 
             mediaCollectionAdapter.replaceData(state.mediaCollectionItems)
+
+            state.userItem?.let {
+                userId.text = it.id
+                mediaCount.text = it.mediaCount
+            }
+
+            state.showSnackBar?.observeOnlyOnce {
+                showLongSnackBar(it)
+            }
         }
     }
 }
