@@ -32,7 +32,10 @@ class MediaDetailFragment : BaseFragment(R.layout.fragment_media_detail) {
 
     private fun initUi() {
         childrenList.apply {
-            adapter = mediaDetailAdapter
+            adapter = mediaDetailAdapter.also {
+                it.registerAdapterDataObserver(indicator.adapterDataObserver)
+            }
+            indicator.setViewPager(this)
         }
     }
 

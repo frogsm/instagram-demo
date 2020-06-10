@@ -76,6 +76,8 @@ dependencies {
     implementation deps.glide.base
     kapt deps.glide.compiler
 
+    implementation deps.circle_indicator.base
+
     testImplementation deps.test.junit
     androidTestImplementation deps.test.ext_junit
     androidTestImplementation deps.test.espresso
