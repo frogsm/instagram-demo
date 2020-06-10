@@ -9,7 +9,7 @@ class UserRepositoryImpl @Inject constructor(
 ) : UserRepository {
 
     override suspend fun login(): Boolean {
-        val user = userDataSource.getUser()
+        userDataSource.getUser()
         return true
     }
 
@@ -18,12 +18,12 @@ class UserRepositoryImpl @Inject constructor(
     }
 
     override suspend fun getUser(): User {
-        val user = userDataSource.getUser()
+        val data = userDataSource.getUser()
 
         return User(
-            id = user.id,
-            name = user.username,
-            mediaCount = user.media_count
+            id = data.id,
+            name = data.username,
+            mediaCount = data.media_count
         )
     }
 }
