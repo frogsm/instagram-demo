@@ -4,6 +4,7 @@ import com.frogsm.instagram_demo.data.media.data.MediaData
 import com.frogsm.instagram_demo.data.media.data.MediaTypeData
 import com.frogsm.instagram_demo.domain.entity.Media
 import com.frogsm.instagram_demo.domain.entity.MediaCollection
+import com.frogsm.instagram_demo.domain.entity.MediaDetail
 import com.frogsm.instagram_demo.domain.entity.MediaType
 import com.frogsm.instagram_demo.domain.repository.MediaRepository
 import javax.inject.Inject
@@ -17,6 +18,17 @@ class MediaRepositoryImpl @Inject constructor(
         return data.mapToEntity()
     }
 
+    override suspend fun getMediaDetail(id: String): MediaDetail {
+        val detailData = mediaDataSource.getMedia(id)
+        val childrenData = mediaDataSource.getMediaChildren(id)
+
+        return MediaDetail(
+            media = detailData.mapToEntity(),
+            children = childrenData.data
+                .map { it.mapToEntity() }
+        )
+    }
+
     override suspend fun getMediaCollection(): MediaCollection {
         return mediaDataSource.getMediaCollection().data
             .map { it.mapToEntity() }
@@ -26,14 +38,14 @@ class MediaRepositoryImpl @Inject constructor(
     private fun MediaData.mapToEntity(): Media {
         return Media(
             id = id,
-            userName = username,
-            caption = caption ?: "",
             mediaType = when (media_type) {
                 MediaTypeData.IMAGE -> MediaType.IMAGE
                 MediaTypeData.VIDEO -> MediaType.VIDEO
                 MediaTypeData.ALBUM -> MediaType.ALBUM
             },
             mediaUrl = media_url,
+            userName = username,
+            caption = caption,
             thumbnailUrl = thumbnail_url,
             timeStamp = timestamp
         )
