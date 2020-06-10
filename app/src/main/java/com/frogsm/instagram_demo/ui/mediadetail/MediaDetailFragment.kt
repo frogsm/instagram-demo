@@ -5,7 +5,6 @@ import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.observe
 import androidx.navigation.fragment.navArgs
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.frogsm.instagram_demo.R
 import com.frogsm.instagram_demo.ui.ViewModelFactory
 import com.frogsm.instagram_demo.ui.base.BaseFragment
@@ -34,8 +33,6 @@ class MediaDetailFragment : BaseFragment(R.layout.fragment_media_detail) {
     private fun initUi() {
         childrenList.apply {
             adapter = mediaDetailAdapter
-            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-            itemAnimator = null
         }
     }
 
