@@ -8,6 +8,8 @@ import com.frogsm.instagram_demo.ui.login.LoginFragment
 import com.frogsm.instagram_demo.ui.login.LoginModule
 import com.frogsm.instagram_demo.ui.mediacollection.MediaCollectionFragment
 import com.frogsm.instagram_demo.ui.mediacollection.MediaCollectionModule
+import com.frogsm.instagram_demo.ui.mediadetail.MediaDetailFragment
+import com.frogsm.instagram_demo.ui.mediadetail.MediaDetailModule
 import com.frogsm.instagram_demo.ui.splash.SplashFragment
 import com.frogsm.instagram_demo.ui.splash.SplashModule
 import dagger.Binds
@@ -42,4 +44,7 @@ abstract class MainActivityModule {
 
     @ContributesAndroidInjector(modules = [MediaCollectionModule::class])
     abstract fun bindsMediaCollectionFragment(): MediaCollectionFragment
+
+    @ContributesAndroidInjector(modules = [MediaDetailModule::class])
+    abstract fun bindsMediaDetailFragment(): MediaDetailFragment
 }

@@ -6,10 +6,12 @@ import android.view.View
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.observe
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.frogsm.instagram_demo.R
+import com.frogsm.instagram_demo.extensions.navigateSafely
 import com.frogsm.instagram_demo.extensions.showLongSnackBar
 import com.frogsm.instagram_demo.extensions.toDp
 import com.frogsm.instagram_demo.ui.ViewModelFactory
@@ -24,7 +26,7 @@ class MediaCollectionFragment : BaseFragment(R.layout.fragment_media_collection)
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
 
-    private val viewModel by viewModels<MediaCollectionViewModel> { viewModelFactory }
+    val viewModel by viewModels<MediaCollectionViewModel> { viewModelFactory }
     private val args by navArgs<MediaCollectionFragmentArgs>()
 
     @Inject
@@ -76,6 +78,12 @@ class MediaCollectionFragment : BaseFragment(R.layout.fragment_media_collection)
 
             state.showSnackBar?.observeOnlyOnce {
                 showLongSnackBar(it)
+            }
+
+            state.navigateMediaDetail?.observeOnlyOnce { userName ->
+                val action = MediaCollectionFragmentDirections
+                    .actionMediaCollectionFragmentToMediaDetailFragment(userName = userName)
+                findNavController().navigateSafely(action)
             }
         }
     }

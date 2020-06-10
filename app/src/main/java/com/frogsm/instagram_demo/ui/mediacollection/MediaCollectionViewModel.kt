@@ -9,11 +9,13 @@ import com.frogsm.instagram_demo.ui.GlobalListener
 import com.frogsm.instagram_demo.ui.base.BaseViewModel
 import com.frogsm.instagram_demo.ui.mapper.mapToMediaCollectionItem
 import com.frogsm.instagram_demo.ui.mapper.mapToUserItem
+import com.frogsm.instagram_demo.ui.mediacollection.list.MediaCollectionItem
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
+import javax.inject.Singleton
 
 class MediaCollectionViewModel @Inject constructor(
     context: Context,
@@ -32,6 +34,11 @@ class MediaCollectionViewModel @Inject constructor(
             launch { getUser() }
             launch { getMediaCollection() }
         }
+    }
+
+    override fun onMediaCollectionItemClicked(item: MediaCollectionItem) {
+        state.onMediaCollectionItemClicked()
+        liveData.postValue(state)
     }
 
     private suspend fun getUser(

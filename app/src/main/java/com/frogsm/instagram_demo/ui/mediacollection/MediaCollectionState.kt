@@ -11,7 +11,10 @@ interface MediaCollectionStateBindable {
     var userItem: UserItem?
     var progressBarVisible: Boolean
     var mediaCollectionItems: List<MediaCollectionItem>
+
+    // Events
     var showSnackBar: Event<String>?
+    var navigateMediaDetail: Event<String>?
 }
 
 class MediaCollectionState(
@@ -20,7 +23,8 @@ class MediaCollectionState(
     override var userItem: UserItem? = null,
     override var progressBarVisible: Boolean = true,
     override var mediaCollectionItems: List<MediaCollectionItem> = emptyList(),
-    override var showSnackBar: Event<String>? = null
+    override var showSnackBar: Event<String>? = null,
+    override var navigateMediaDetail: Event<String>? = null
 ) : MediaCollectionStateBindable {
 
     fun initialize(userName: String) {
@@ -43,6 +47,10 @@ class MediaCollectionState(
 
     fun showProgressBar(visible: Boolean) {
         progressBarVisible = visible
+    }
+
+    fun onMediaCollectionItemClicked() {
+        navigateMediaDetail = Event(toolbarTitle)
     }
 
 }

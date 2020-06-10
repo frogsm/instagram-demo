@@ -6,6 +6,7 @@
     android:layout_height="wrap_content">
 
     <FrameLayout
+        android:id="@+id/itemContainer"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:clickable="true"

@@ -6,6 +6,7 @@ import com.frogsm.instagram_demo.ui.mediacollection.list.MediaCollectionDelegate
 import com.frogsm.instagram_demo.ui.mediacollection.list.MediaCollectionDelegateImpl
 import dagger.Binds
 import dagger.Module
+import dagger.Provides
 import dagger.multibindings.IntoMap
 
 @Module
@@ -19,4 +20,11 @@ abstract class MediaCollectionModule {
     abstract fun bindsViewHolderDelegate(
         mediaCollectionDelegateImpl: MediaCollectionDelegateImpl
     ): MediaCollectionDelegate
+
+    companion object {
+        @Provides
+        fun providesController(
+            fragment: MediaCollectionFragment
+        ): MediaCollectionController = fragment.viewModel
+    }
 }
