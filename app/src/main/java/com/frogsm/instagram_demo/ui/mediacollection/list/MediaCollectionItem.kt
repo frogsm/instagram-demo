@@ -6,15 +6,17 @@ import com.frogsm.instagram_demo.R
 
 sealed class MediaCollectionItem(
     open val index: Int,
+    open val mediaId: String,
     open val thumbnailUrl: String,
     @LayoutRes open val layoutId: Int
 ) : Presenter {
 
     data class Image(
         override val index: Int,
+        override val mediaId: String,
         override val thumbnailUrl: String,
         override val layoutId: Int = R.layout.item_media_collection_image
-    ) : MediaCollectionItem(index, thumbnailUrl, layoutId) {
+    ) : MediaCollectionItem(index, mediaId, thumbnailUrl, layoutId) {
 
         override fun presentUi(delegate: MediaCollectionDelegate, view: View) {
             delegate.initUi(this, view)
@@ -23,9 +25,10 @@ sealed class MediaCollectionItem(
 
     data class Video(
         override val index: Int,
+        override val mediaId: String,
         override val thumbnailUrl: String,
         override val layoutId: Int = R.layout.item_media_collection_video
-    ) : MediaCollectionItem(index, thumbnailUrl, layoutId) {
+    ) : MediaCollectionItem(index, mediaId, thumbnailUrl, layoutId) {
 
         override fun presentUi(delegate: MediaCollectionDelegate, view: View) {
             delegate.initUi(this, view)
@@ -34,9 +37,10 @@ sealed class MediaCollectionItem(
 
     data class Album(
         override val index: Int,
+        override val mediaId: String,
         override val thumbnailUrl: String,
         override val layoutId: Int = R.layout.item_media_collection_album
-    ) : MediaCollectionItem(index, thumbnailUrl, layoutId) {
+    ) : MediaCollectionItem(index, mediaId, thumbnailUrl, layoutId) {
 
         override fun presentUi(delegate: MediaCollectionDelegate, view: View) {
             delegate.initUi(this, view)

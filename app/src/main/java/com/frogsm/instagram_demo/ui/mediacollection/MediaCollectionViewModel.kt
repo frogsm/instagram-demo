@@ -15,7 +15,6 @@ import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
-import javax.inject.Singleton
 
 class MediaCollectionViewModel @Inject constructor(
     context: Context,
@@ -37,7 +36,7 @@ class MediaCollectionViewModel @Inject constructor(
     }
 
     override fun onMediaCollectionItemClicked(item: MediaCollectionItem) {
-        state.onMediaCollectionItemClicked()
+        state.onMediaCollectionItemClicked(item.mediaId)
         liveData.postValue(state)
     }
 

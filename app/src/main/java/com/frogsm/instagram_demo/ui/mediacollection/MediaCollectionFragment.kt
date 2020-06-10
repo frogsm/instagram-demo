@@ -80,9 +80,12 @@ class MediaCollectionFragment : BaseFragment(R.layout.fragment_media_collection)
                 showLongSnackBar(it)
             }
 
-            state.navigateMediaDetail?.observeOnlyOnce { userName ->
+            state.navigateMediaDetail?.observeOnlyOnce { (userName, mediaId) ->
                 val action = MediaCollectionFragmentDirections
-                    .actionMediaCollectionFragmentToMediaDetailFragment(userName = userName)
+                    .actionMediaCollectionFragmentToMediaDetailFragment(
+                        userName = userName,
+                        mediaId = mediaId
+                    )
                 findNavController().navigateSafely(action)
             }
         }

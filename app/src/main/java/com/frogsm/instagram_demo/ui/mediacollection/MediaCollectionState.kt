@@ -14,7 +14,7 @@ interface MediaCollectionStateBindable {
 
     // Events
     var showSnackBar: Event<String>?
-    var navigateMediaDetail: Event<String>?
+    var navigateMediaDetail: Event<Pair<String, String>>?
 }
 
 class MediaCollectionState(
@@ -24,7 +24,7 @@ class MediaCollectionState(
     override var progressBarVisible: Boolean = true,
     override var mediaCollectionItems: List<MediaCollectionItem> = emptyList(),
     override var showSnackBar: Event<String>? = null,
-    override var navigateMediaDetail: Event<String>? = null
+    override var navigateMediaDetail: Event<Pair<String, String>>? = null
 ) : MediaCollectionStateBindable {
 
     fun initialize(userName: String) {
@@ -49,8 +49,8 @@ class MediaCollectionState(
         progressBarVisible = visible
     }
 
-    fun onMediaCollectionItemClicked() {
-        navigateMediaDetail = Event(toolbarTitle)
+    fun onMediaCollectionItemClicked(mediaId: String) {
+        navigateMediaDetail = Event(toolbarTitle to mediaId)
     }
 
 }

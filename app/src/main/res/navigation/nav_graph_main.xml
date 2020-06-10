@@ -99,5 +99,8 @@
         <argument
             android:name="userName"
             app:argType="string" />
+        <argument
+            android:name="mediaId"
+            app:argType="string" />
     </fragment>
 </navigation>

@@ -10,12 +10,14 @@ fun MediaCollection.mapToMediaCollectionItem(): List<MediaCollectionItem> {
             MediaType.IMAGE -> {
                 MediaCollectionItem.Image(
                     index = index,
+                    mediaId = media.id,
                     thumbnailUrl = media.mediaUrl
                 )
             }
             MediaType.VIDEO -> {
                 MediaCollectionItem.Video(
                     index = index,
+                    mediaId = media.id,
                     thumbnailUrl = media.thumbnailUrl ?: ""
                 )
             }
@@ -23,6 +25,7 @@ fun MediaCollection.mapToMediaCollectionItem(): List<MediaCollectionItem> {
             MediaType.ALBUM -> {
                 MediaCollectionItem.Album(
                     index = index,
+                    mediaId = media.id,
                     thumbnailUrl = media.mediaUrl
                 )
             }
