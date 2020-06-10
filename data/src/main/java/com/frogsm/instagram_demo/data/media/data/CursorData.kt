@@ -1,4 +1,4 @@
-package com.frogsm.instagram_demo.data.media
+package com.frogsm.instagram_demo.data.media.data
 
 import com.squareup.moshi.JsonClass
 

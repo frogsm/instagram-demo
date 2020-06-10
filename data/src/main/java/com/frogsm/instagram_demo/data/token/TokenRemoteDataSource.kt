@@ -1,6 +1,8 @@
 package com.frogsm.instagram_demo.data.token
 
 import com.frogsm.instagram_demo.data.api.AuthorizationApi
+import com.frogsm.instagram_demo.data.token.data.AccessTokenData
+import com.frogsm.instagram_demo.data.token.data.AuthorizeUriData
 import javax.inject.Inject
 
 class TokenRemoteDataSource @Inject constructor(

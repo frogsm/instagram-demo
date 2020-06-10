@@ -2,7 +2,7 @@ package com.frogsm.instagram_demo.di.component
 
 import android.content.Context
 import com.frogsm.instagram_demo.InstagramApplication
-import com.frogsm.instagram_demo.data.DataModule
+import com.frogsm.instagram_demo.data.di.component.DataModule
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjector

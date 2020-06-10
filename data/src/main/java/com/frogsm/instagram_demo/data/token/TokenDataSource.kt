@@ -1,5 +1,7 @@
 package com.frogsm.instagram_demo.data.token
 
+import com.frogsm.instagram_demo.data.token.data.AccessTokenData
+import com.frogsm.instagram_demo.data.token.data.AuthorizeUriData
 import com.frogsm.instagram_demo.domain.entity.AccessToken
 import javax.inject.Inject
 

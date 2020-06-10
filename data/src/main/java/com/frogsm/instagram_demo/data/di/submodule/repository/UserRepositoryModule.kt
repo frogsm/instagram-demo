@@ -1,6 +1,9 @@
-package com.frogsm.instagram_demo.data.user
+package com.frogsm.instagram_demo.data.di.submodule.repository
 
 import com.frogsm.instagram_demo.data.api.UserApi
+import com.frogsm.instagram_demo.data.user.UserLocalDataSource
+import com.frogsm.instagram_demo.data.user.UserRemoteDataSource
+import com.frogsm.instagram_demo.data.user.UserRepositoryImpl
 import com.frogsm.instagram_demo.domain.repository.UserRepository
 import dagger.Binds
 import dagger.Module
@@ -19,11 +22,13 @@ abstract class UserRepositoryModule {
         @Provides
         @Singleton
         fun providesLocalDataSource(
-        ): UserLocalDataSource = UserLocalDataSource()
+        ): UserLocalDataSource =
+            UserLocalDataSource()
 
         @Provides
         fun providesRemoteDataSource(
             userApi: UserApi
-        ): UserRemoteDataSource = UserRemoteDataSource(userApi)
+        ): UserRemoteDataSource =
+            UserRemoteDataSource(userApi)
     }
 }

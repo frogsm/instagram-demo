@@ -1,5 +1,6 @@
-package com.frogsm.instagram_demo.data.media
+package com.frogsm.instagram_demo.data.di.submodule.repository
 
+import com.frogsm.instagram_demo.data.media.MediaRepositoryImpl
 import com.frogsm.instagram_demo.domain.repository.MediaRepository
 import dagger.Binds
 import dagger.Module

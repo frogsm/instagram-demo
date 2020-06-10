@@ -1,4 +1,4 @@
-package com.frogsm.instagram_demo.data.user
+package com.frogsm.instagram_demo.data.user.data
 
 data class UserData(
     val id: String,

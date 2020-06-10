@@ -1,5 +1,6 @@
 package com.frogsm.instagram_demo.data.media
 
+import com.frogsm.instagram_demo.data.media.data.MediaTypeData
 import com.frogsm.instagram_demo.domain.entity.Media
 import com.frogsm.instagram_demo.domain.entity.MediaCollection
 import com.frogsm.instagram_demo.domain.entity.MediaType

@@ -1,7 +1,9 @@
-package com.frogsm.instagram_demo.data.preferences
+package com.frogsm.instagram_demo.data.di.submodule
 
 import android.content.Context
 import android.content.SharedPreferences
+import com.frogsm.instagram_demo.data.preferences.Preferences
+import com.frogsm.instagram_demo.data.preferences.PreferencesImpl
 import dagger.Binds
 import dagger.Module
 import dagger.Provides

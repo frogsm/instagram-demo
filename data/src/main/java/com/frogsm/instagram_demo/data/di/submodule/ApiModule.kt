@@ -1,7 +1,10 @@
-package com.frogsm.instagram_demo.data.api
+package com.frogsm.instagram_demo.data.di.submodule
 
 import android.content.Context
 import com.frogsm.instagram_demo.data.R
+import com.frogsm.instagram_demo.data.api.AuthorizationApi
+import com.frogsm.instagram_demo.data.api.MediaApi
+import com.frogsm.instagram_demo.data.api.UserApi
 import com.frogsm.instagram_demo.data.util.MoshiCreator
 import com.frogsm.instagram_demo.data.util.ServiceCreator
 import com.frogsm.instagram_demo.data.util.TokenInterceptor

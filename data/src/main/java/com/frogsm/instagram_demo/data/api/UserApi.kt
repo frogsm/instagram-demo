@@ -1,6 +1,6 @@
 package com.frogsm.instagram_demo.data.api
 
-import com.frogsm.instagram_demo.data.user.UserData
+import com.frogsm.instagram_demo.data.user.data.UserData
 import retrofit2.http.GET
 import retrofit2.http.Query
 
