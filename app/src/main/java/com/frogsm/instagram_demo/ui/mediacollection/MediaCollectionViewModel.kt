@@ -7,7 +7,7 @@ import com.frogsm.instagram_demo.domain.usecase.media.GetMediaCollection
 import com.frogsm.instagram_demo.domain.usecase.user.GetUser
 import com.frogsm.instagram_demo.ui.GlobalListener
 import com.frogsm.instagram_demo.ui.base.BaseViewModel
-import com.frogsm.instagram_demo.ui.mapper.mapToMediaCollectionItem
+import com.frogsm.instagram_demo.ui.mapper.mapToMediaCollectionItems
 import com.frogsm.instagram_demo.ui.mapper.mapToUserItem
 import com.frogsm.instagram_demo.ui.mediacollection.list.MediaCollectionItem
 import kotlinx.coroutines.Dispatchers
@@ -60,7 +60,7 @@ class MediaCollectionViewModel @Inject constructor(
         showProgressBar(true)
 
         getMediaCollection(Unit)
-            .map { it.mapToMediaCollectionItem() }
+            .map { it.mapToMediaCollectionItems() }
             .onSuccess {
                 state.successGetMediaCollection(it)
                 liveData.postValue(state)

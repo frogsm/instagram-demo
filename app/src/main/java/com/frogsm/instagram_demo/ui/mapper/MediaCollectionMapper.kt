@@ -4,7 +4,7 @@ import com.frogsm.instagram_demo.domain.entity.MediaCollection
 import com.frogsm.instagram_demo.domain.entity.MediaType
 import com.frogsm.instagram_demo.ui.mediacollection.list.MediaCollectionItem
 
-fun MediaCollection.mapToMediaCollectionItem(): List<MediaCollectionItem> {
+fun MediaCollection.mapToMediaCollectionItems(): List<MediaCollectionItem> {
     return data.mapIndexed { index, media ->
         when (media.mediaType) {
             MediaType.IMAGE -> {

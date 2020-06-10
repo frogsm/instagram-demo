@@ -5,9 +5,11 @@ import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.observe
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.frogsm.instagram_demo.R
 import com.frogsm.instagram_demo.ui.ViewModelFactory
 import com.frogsm.instagram_demo.ui.base.BaseFragment
+import com.frogsm.instagram_demo.ui.mediadetail.list.MediaDetailAdapter
 import kotlinx.android.synthetic.main.fragment_media_detail.*
 import javax.inject.Inject
 
@@ -19,21 +21,29 @@ class MediaDetailFragment : BaseFragment(R.layout.fragment_media_detail) {
     private val viewModel by viewModels<MediaDetailViewModel> { viewModelFactory }
     private val args by navArgs<MediaDetailFragmentArgs>()
 
+    @Inject
+    lateinit var mediaDetailAdapter: MediaDetailAdapter
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initUi()
         initBinding()
-        viewModel.start(args.userName)
+        viewModel.start(args.userName, args.mediaId)
     }
 
     private fun initUi() {
-
+        childrenList.apply {
+            adapter = mediaDetailAdapter
+            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+            itemAnimator = null
+        }
     }
 
     private fun initBinding() {
         viewModel.liveData.observe(viewLifecycleOwner) { state ->
-
             toolbar.title = state.toolbarTitle
+
+            mediaDetailAdapter.replaceData(state.mediaDetailItem.children)
         }
     }
 }
