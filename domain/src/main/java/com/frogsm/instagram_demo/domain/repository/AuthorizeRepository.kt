@@ -3,7 +3,7 @@ package com.frogsm.instagram_demo.domain.repository
 import com.frogsm.instagram_demo.domain.entity.AccessToken
 import com.frogsm.instagram_demo.domain.entity.AuthorizeUri
 
-interface TokenRepository {
+interface AuthorizeRepository {
     suspend fun getAuthorizeUri(
         clientId: String,
         redirectUri: String,

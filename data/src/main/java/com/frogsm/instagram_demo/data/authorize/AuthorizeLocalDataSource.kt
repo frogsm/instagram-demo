@@ -1,11 +1,11 @@
-package com.frogsm.instagram_demo.data.token
+package com.frogsm.instagram_demo.data.authorize
 
+import com.frogsm.instagram_demo.data.authorize.data.AccessTokenData
 import com.frogsm.instagram_demo.data.preferences.Preferences
-import com.frogsm.instagram_demo.data.token.data.AccessTokenData
 import com.frogsm.instagram_demo.domain.entity.AccessToken
 import javax.inject.Inject
 
-class TokenLocalDataSource @Inject constructor(
+class AuthorizeLocalDataSource @Inject constructor(
     private val preferences: Preferences
 ) {
     private var memoryAccessToken: AccessToken? = null

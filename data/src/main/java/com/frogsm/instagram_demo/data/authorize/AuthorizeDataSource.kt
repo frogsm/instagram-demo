@@ -1,13 +1,13 @@
-package com.frogsm.instagram_demo.data.token
+package com.frogsm.instagram_demo.data.authorize
 
-import com.frogsm.instagram_demo.data.token.data.AccessTokenData
-import com.frogsm.instagram_demo.data.token.data.AuthorizeUriData
+import com.frogsm.instagram_demo.data.authorize.data.AccessTokenData
+import com.frogsm.instagram_demo.data.authorize.data.AuthorizeUriData
 import com.frogsm.instagram_demo.domain.entity.AccessToken
 import javax.inject.Inject
 
-class TokenDataSource @Inject constructor(
-    private val localDataSource: TokenLocalDataSource,
-    private val remoteDataSource: TokenRemoteDataSource
+class AuthorizeDataSource @Inject constructor(
+    private val localDataSource: AuthorizeLocalDataSource,
+    private val remoteDataSource: AuthorizeRemoteDataSource
 ) {
 
     suspend fun getAuthorizeUri(

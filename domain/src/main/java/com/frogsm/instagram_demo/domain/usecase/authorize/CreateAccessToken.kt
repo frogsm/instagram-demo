@@ -1,15 +1,15 @@
-package com.frogsm.instagram_demo.domain.usecase.token
+package com.frogsm.instagram_demo.domain.usecase.authorize
 
-import com.frogsm.instagram_demo.domain.repository.TokenRepository
+import com.frogsm.instagram_demo.domain.repository.AuthorizeRepository
 import com.frogsm.instagram_demo.domain.usecase.SuspendUseCase
 import javax.inject.Inject
 
 class CreateAccessToken @Inject constructor(
-    private val tokenRepository: TokenRepository
+    private val authorizeRepository: AuthorizeRepository
 ) : SuspendUseCase<CreateAccessToken.Request, Unit> {
 
     override suspend fun invoke(param: Request): Result<Unit> = try {
-        tokenRepository.createAccessToken(
+        authorizeRepository.createAccessToken(
             clientId = param.clientId,
             clientSecretId = param.clientSecretId,
             redirectUri = param.redirectUri,

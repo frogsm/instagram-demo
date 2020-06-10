@@ -1,13 +1,13 @@
-package com.frogsm.instagram_demo.data.token
+package com.frogsm.instagram_demo.data.authorize
 
 import com.frogsm.instagram_demo.domain.entity.AccessToken
 import com.frogsm.instagram_demo.domain.entity.AuthorizeUri
-import com.frogsm.instagram_demo.domain.repository.TokenRepository
+import com.frogsm.instagram_demo.domain.repository.AuthorizeRepository
 import javax.inject.Inject
 
-class TokenRepositoryImpl @Inject constructor(
-    private val tokenDataSource: TokenDataSource
-) : TokenRepository {
+class AuthorizeRepositoryImpl @Inject constructor(
+    private val authorizeDataSource: AuthorizeDataSource
+) : AuthorizeRepository {
 
     override suspend fun getAuthorizeUri(
         clientId: String,
@@ -15,7 +15,7 @@ class TokenRepositoryImpl @Inject constructor(
         scope: String,
         responseType: String
     ): AuthorizeUri {
-        val data = tokenDataSource.getAuthorizeUri(
+        val data = authorizeDataSource.getAuthorizeUri(
             clientId = clientId,
             redirectUri = redirectUri,
             scope = scope,
@@ -31,7 +31,7 @@ class TokenRepositoryImpl @Inject constructor(
         authorizeCode: String,
         grantType: String
     ) {
-        tokenDataSource.createAccessToken(
+        authorizeDataSource.createAccessToken(
             clientId = clientId,
             clientSecretId = clientSecretId,
             redirectUri = redirectUri,
@@ -41,10 +41,10 @@ class TokenRepositoryImpl @Inject constructor(
     }
 
     override suspend fun getAccessToken(): AccessToken? {
-        return tokenDataSource.getAccessToken()
+        return authorizeDataSource.getAccessToken()
     }
 
     override suspend fun clearToken() {
-        tokenDataSource.clearAccessToken()
+        authorizeDataSource.clearAccessToken()
     }
 }

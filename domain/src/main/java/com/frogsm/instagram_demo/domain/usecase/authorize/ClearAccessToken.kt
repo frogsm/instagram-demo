@@ -1,15 +1,15 @@
-package com.frogsm.instagram_demo.domain.usecase.token
+package com.frogsm.instagram_demo.domain.usecase.authorize
 
-import com.frogsm.instagram_demo.domain.repository.TokenRepository
+import com.frogsm.instagram_demo.domain.repository.AuthorizeRepository
 import com.frogsm.instagram_demo.domain.usecase.SuspendUseCase
 import javax.inject.Inject
 
 class ClearAccessToken @Inject constructor(
-    private val tokenRepository: TokenRepository
+    private val authorizeRepository: AuthorizeRepository
 ) : SuspendUseCase<Unit, Unit> {
 
     override suspend fun invoke(param: Unit): Result<Unit> = try {
-        tokenRepository.clearToken()
+        authorizeRepository.clearToken()
 
         Result.success(Unit)
     } catch (throwable: Throwable) {

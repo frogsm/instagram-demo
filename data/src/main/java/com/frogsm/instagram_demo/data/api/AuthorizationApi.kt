@@ -1,6 +1,6 @@
 package com.frogsm.instagram_demo.data.api
 
-import com.frogsm.instagram_demo.data.token.data.AccessTokenData
+import com.frogsm.instagram_demo.data.authorize.data.AccessTokenData
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.http.Field

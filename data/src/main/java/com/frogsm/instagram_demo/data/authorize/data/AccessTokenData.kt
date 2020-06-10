@@ -1,4 +1,4 @@
-package com.frogsm.instagram_demo.data.token.data
+package com.frogsm.instagram_demo.data.authorize.data
 
 import com.squareup.moshi.JsonClass
 

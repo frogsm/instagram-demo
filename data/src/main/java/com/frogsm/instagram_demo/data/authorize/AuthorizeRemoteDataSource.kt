@@ -1,11 +1,11 @@
-package com.frogsm.instagram_demo.data.token
+package com.frogsm.instagram_demo.data.authorize
 
 import com.frogsm.instagram_demo.data.api.AuthorizationApi
-import com.frogsm.instagram_demo.data.token.data.AccessTokenData
-import com.frogsm.instagram_demo.data.token.data.AuthorizeUriData
+import com.frogsm.instagram_demo.data.authorize.data.AccessTokenData
+import com.frogsm.instagram_demo.data.authorize.data.AuthorizeUriData
 import javax.inject.Inject
 
-class TokenRemoteDataSource @Inject constructor(
+class AuthorizeRemoteDataSource @Inject constructor(
     private val authorizationApi: AuthorizationApi
 ) {
 
