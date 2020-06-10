@@ -12,10 +12,14 @@ fun MediaDetail.mapToMediaDetailItem(): MediaDetailItem {
         caption = media.caption ?: "",
         timeStamp = media.timeStamp ?: "",
         children = when (media.mediaType) {
-            MediaType.IMAGE,
-            MediaType.VIDEO -> listOf(MediaChildrenItem(0, media.mediaUrl)) // media 데이터 사용
-            MediaType.ALBUM -> children.mapIndexed { index, child -> // children 데이터 사용
-                MediaChildrenItem(index, child.mediaUrl)
+            MediaType.IMAGE -> listOf(MediaChildrenItem.Image(0, media.mediaUrl))
+            MediaType.VIDEO -> listOf(MediaChildrenItem.Video(0, media.mediaUrl))
+            MediaType.ALBUM -> children.mapIndexed { index, child ->
+                when (child.mediaType) {
+                    MediaType.IMAGE -> MediaChildrenItem.Image(index, media.mediaUrl)
+                    MediaType.VIDEO -> MediaChildrenItem.Video(index, media.mediaUrl)
+                    MediaType.ALBUM -> throw IllegalStateException()
+                }
             }
         }
     )

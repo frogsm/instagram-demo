@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.SortedListAdapterCallback
 import javax.inject.Inject
 
 class MediaDetailAdapter @Inject constructor(
+    private val delegate: MediaDetailDelegate
 ) : RecyclerView.Adapter<MediaDetailViewHolder>() {
 
     private val mediaChildrenItems = SortedList(
@@ -38,7 +39,7 @@ class MediaDetailAdapter @Inject constructor(
     override fun getItemCount(): Int = mediaChildrenItems.size()
 
     override fun onBindViewHolder(holder: MediaDetailViewHolder, position: Int) {
-        holder.onBind(mediaChildrenItems[position])
+        holder.onBind(delegate, mediaChildrenItems[position])
     }
 
     override fun getItemViewType(position: Int): Int = mediaChildrenItems[position].layoutId
