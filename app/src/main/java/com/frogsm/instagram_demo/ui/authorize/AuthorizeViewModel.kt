@@ -1,4 +1,4 @@
-package com.frogsm.instagram_demo.ui.token
+package com.frogsm.instagram_demo.ui.authorize
 
 import android.content.Context
 import androidx.lifecycle.MutableLiveData
@@ -12,14 +12,14 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
-class TokenViewModel @Inject constructor(
+class AuthorizeViewModel @Inject constructor(
     context: Context,
     private val createOauthAuthorizeUri: CreateOauthAuthorizeUri,
     private val createAccessToken: CreateAccessToken
-) : ViewModel(), TokenController {
+) : ViewModel(), AuthorizeController {
 
     val liveData = MutableLiveData<TokenStateBindable>()
-    private val state = TokenState(context.resources)
+    private val state = AuthorizeState(context.resources)
 
     override fun start(
         clientId: String,

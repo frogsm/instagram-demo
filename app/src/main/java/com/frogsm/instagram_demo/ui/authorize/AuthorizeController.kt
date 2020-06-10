@@ -1,6 +1,6 @@
-package com.frogsm.instagram_demo.ui.token
+package com.frogsm.instagram_demo.ui.authorize
 
-interface TokenController {
+interface AuthorizeController {
     fun start(
         clientId: String,
         clientSecretId: String,

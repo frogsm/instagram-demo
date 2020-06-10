@@ -1,4 +1,4 @@
-package com.frogsm.instagram_demo.ui.token
+package com.frogsm.instagram_demo.ui.authorize
 
 import android.content.res.Resources
 import com.frogsm.instagram_demo.R
@@ -11,7 +11,7 @@ interface TokenStateBindable {
     var navigateBack: Event<Unit>?
 }
 
-class TokenState(
+class AuthorizeState(
     private val resources: Resources,
     override var displayUrl: Event<String>? = null,
     override var showSnackBar: Event<String>? = null,

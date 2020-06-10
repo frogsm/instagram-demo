@@ -39,8 +39,8 @@
         tools:layout="@layout/fragment_login">
 
         <action
-            android:id="@+id/action_loginFragment_to_tokenFragment"
-            app:destination="@id/tokenFragment"
+            android:id="@+id/action_loginFragment_to_authorizeFragment"
+            app:destination="@id/authorizeFragment"
             app:enterAnim="@anim/fragment_open_enter"
             app:exitAnim="@anim/fragment_open_exit"
             app:popEnterAnim="@anim/fragment_close_enter"
@@ -58,10 +58,10 @@
     </fragment>
 
     <fragment
-        android:id="@+id/tokenFragment"
-        android:name="com.frogsm.instagram_demo.ui.token.TokenFragment"
-        android:label="TokenFragment"
-        tools:layout="@layout/fragment_token">
+        android:id="@+id/authorizeFragment"
+        android:name="com.frogsm.instagram_demo.ui.authorize.AuthorizeFragment"
+        android:label="AuthorizeFragment"
+        tools:layout="@layout/fragment_authorize">
         <argument
             android:name="clientId"
             app:argType="string" />

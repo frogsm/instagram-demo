@@ -1,4 +1,4 @@
-package com.frogsm.instagram_demo.ui.token
+package com.frogsm.instagram_demo.ui.authorize
 
 import android.net.Uri
 import android.os.Bundle
@@ -15,16 +15,16 @@ import com.frogsm.instagram_demo.R
 import com.frogsm.instagram_demo.extensions.showLongSnackBar
 import com.frogsm.instagram_demo.ui.ViewModelFactory
 import com.frogsm.instagram_demo.ui.base.BaseFragment
-import kotlinx.android.synthetic.main.fragment_token.*
+import kotlinx.android.synthetic.main.fragment_authorize.*
 import javax.inject.Inject
 
-class TokenFragment : BaseFragment(R.layout.fragment_token) {
+class AuthorizeFragment : BaseFragment(R.layout.fragment_authorize) {
 
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
 
-    private val viewModel by viewModels<TokenViewModel> { viewModelFactory }
-    private val args by navArgs<TokenFragmentArgs>()
+    private val viewModel by viewModels<AuthorizeViewModel> { viewModelFactory }
+    private val args by navArgs<AuthorizeFragmentArgs>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

@@ -78,7 +78,7 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
             }
 
             state.navigateToken?.observeOnlyOnce {
-                val action = LoginFragmentDirections.actionLoginFragmentToTokenFragment(
+                val action = LoginFragmentDirections.actionLoginFragmentToAuthorizeFragment(
                     clientId = state.clientId,
                     clientSecretId = state.clientSecretId,
                     redirectUri = state.redirectUri
