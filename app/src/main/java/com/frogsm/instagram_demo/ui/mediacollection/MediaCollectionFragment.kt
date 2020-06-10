@@ -3,6 +3,7 @@ package com.frogsm.instagram_demo.ui.mediacollection
 import android.graphics.Rect
 import android.os.Bundle
 import android.view.View
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.observe
 import androidx.navigation.fragment.navArgs
@@ -64,6 +65,7 @@ class MediaCollectionFragment : BaseFragment(R.layout.fragment_media_collection)
     private fun initBinding() {
         viewModel.liveData.observe(viewLifecycleOwner) { state ->
             toolbar.title = state.toolbarTitle
+            progressBar.isVisible = state.progressBarVisible
 
             mediaCollectionAdapter.replaceData(state.mediaCollectionItems)
 

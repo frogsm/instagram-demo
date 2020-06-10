@@ -9,6 +9,7 @@ import com.frogsm.instagram_demo.util.Event
 interface MediaCollectionStateBindable {
     var toolbarTitle: String
     var userItem: UserItem?
+    var progressBarVisible: Boolean
     var mediaCollectionItems: List<MediaCollectionItem>
     var showSnackBar: Event<String>?
 }
@@ -17,6 +18,7 @@ class MediaCollectionState(
     private val resources: Resources,
     override var toolbarTitle: String = "",
     override var userItem: UserItem? = null,
+    override var progressBarVisible: Boolean = true,
     override var mediaCollectionItems: List<MediaCollectionItem> = emptyList(),
     override var showSnackBar: Event<String>? = null
 ) : MediaCollectionStateBindable {
@@ -37,6 +39,10 @@ class MediaCollectionState(
 
     fun failureGetUser() {
         showSnackBar = Event(resources.getString(R.string.common_error))
+    }
+
+    fun showProgressBar(visible: Boolean) {
+        progressBarVisible = visible
     }
 
 }
