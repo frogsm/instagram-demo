@@ -76,6 +76,8 @@ dependencies {
     implementation deps.glide.base
     kapt deps.glide.compiler
 
+    implementation deps.exo_player.base
+
     implementation deps.circle_indicator.base
 
     testImplementation deps.test.junit
