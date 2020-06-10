@@ -81,5 +81,23 @@
         <argument
             android:name="userName"
             app:argType="string" />
+
+        <action
+            android:id="@+id/action_mediaCollectionFragment_to_mediaDetailFragment"
+            app:destination="@id/mediaDetailFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/mediaDetailFragment"
+        android:name="com.frogsm.instagram_demo.ui.mediadetail.MediaDetailFragment"
+        android:label="MediaDetailFragment"
+        tools:layout="@layout/fragment_media_detail">
+        <argument
+            android:name="userName"
+            app:argType="string" />
     </fragment>
 </navigation>
