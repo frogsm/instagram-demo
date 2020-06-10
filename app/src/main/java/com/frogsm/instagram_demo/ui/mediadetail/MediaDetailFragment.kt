@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.observe
+import androidx.navigation.fragment.navArgs
 import com.frogsm.instagram_demo.R
 import com.frogsm.instagram_demo.ui.ViewModelFactory
 import com.frogsm.instagram_demo.ui.base.BaseFragment
@@ -16,12 +17,13 @@ class MediaDetailFragment : BaseFragment(R.layout.fragment_media_detail) {
     lateinit var viewModelFactory: ViewModelFactory
 
     private val viewModel by viewModels<MediaDetailViewModel> { viewModelFactory }
+    private val args by navArgs<MediaDetailFragmentArgs>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initUi()
         initBinding()
-        viewModel.start("")
+        viewModel.start(args.userName)
     }
 
     private fun initUi() {

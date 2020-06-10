@@ -13,6 +13,7 @@ class MediaDetailViewModel @Inject constructor(
     private val state = MediaDetailState()
 
     override fun start(userName: String) {
-
+        state.initialize(userName)
+        liveData.postValue(state)
     }
 }
