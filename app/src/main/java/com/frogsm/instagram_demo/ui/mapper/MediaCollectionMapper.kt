@@ -4,19 +4,22 @@ import com.frogsm.instagram_demo.domain.entity.MediaCollection
 import com.frogsm.instagram_demo.domain.entity.MediaType
 import com.frogsm.instagram_demo.ui.mediacollection.list.MediaCollectionItem
 
-fun MediaCollection.mapToMediaCollectionItems(): List<MediaCollectionItem> {
-    return data.mapIndexed { index, media ->
+fun MediaCollection.mapToMediaCollectionItems(
+    lastIndex: Int
+): List<MediaCollectionItem> {
+    return medias.mapIndexed { index, media ->
+
         when (media.mediaType) {
             MediaType.IMAGE -> {
                 MediaCollectionItem.Image(
-                    index = index,
+                    index = lastIndex + index,
                     mediaId = media.id,
                     thumbnailUrl = media.mediaUrl
                 )
             }
             MediaType.VIDEO -> {
                 MediaCollectionItem.Video(
-                    index = index,
+                    index = lastIndex + index,
                     mediaId = media.id,
                     thumbnailUrl = media.thumbnailUrl ?: ""
                 )
@@ -24,7 +27,7 @@ fun MediaCollection.mapToMediaCollectionItems(): List<MediaCollectionItem> {
 
             MediaType.ALBUM -> {
                 MediaCollectionItem.Album(
-                    index = index,
+                    index = lastIndex + index,
                     mediaId = media.id,
                     thumbnailUrl = media.mediaUrl
                 )

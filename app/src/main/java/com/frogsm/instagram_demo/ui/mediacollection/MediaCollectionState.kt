@@ -10,7 +10,7 @@ interface MediaCollectionStateBindable {
     var toolbarTitle: String
     var userItem: UserItem?
     var progressBarVisible: Boolean
-    var mediaCollectionItems: List<MediaCollectionItem>
+    val mediaCollectionItems: List<MediaCollectionItem>
 
     // Events
     var showSnackBar: Event<String>?
@@ -22,10 +22,19 @@ class MediaCollectionState(
     override var toolbarTitle: String = "",
     override var userItem: UserItem? = null,
     override var progressBarVisible: Boolean = true,
-    override var mediaCollectionItems: List<MediaCollectionItem> = emptyList(),
     override var showSnackBar: Event<String>? = null,
     override var navigateMediaDetail: Event<Pair<String, String>>? = null
 ) : MediaCollectionStateBindable {
+
+    var nextPageUrl: String? = null
+    val loadSuccessPageUrlSet: HashSet<String> = hashSetOf()
+
+    // items
+    private val innerMediaCollectionItems =
+        sortedSetOf<MediaCollectionItem>(compareBy { it.index })
+
+    override val mediaCollectionItems: List<MediaCollectionItem>
+        get() = innerMediaCollectionItems.toList()
 
     private var collectionProgressBarEnabled = true
 
@@ -34,10 +43,21 @@ class MediaCollectionState(
     }
 
     fun successGetMediaCollection(
+        nextPageUrl: String?,
         items: List<MediaCollectionItem>
     ) {
-        mediaCollectionItems = items
-        collectionProgressBarEnabled = false
+        // 이미 아이템이 있는 경우에는 이 화면으로 돌아오더라도 프로그래스바를 보여주지 않음
+        if (innerMediaCollectionItems.isEmpty()) {
+            collectionProgressBarEnabled = false
+        }
+
+        this.nextPageUrl = nextPageUrl
+        innerMediaCollectionItems.addAll(items)
+    }
+
+    fun failureGetMediaCollection(url: String?) {
+        loadSuccessPageUrlSet.remove(url)
+        nextPageUrl = url
     }
 
     fun successGetUser(item: UserItem) {

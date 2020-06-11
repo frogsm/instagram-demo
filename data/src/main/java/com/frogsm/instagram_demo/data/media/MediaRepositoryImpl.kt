@@ -1,5 +1,6 @@
 package com.frogsm.instagram_demo.data.media
 
+import com.frogsm.instagram_demo.data.media.data.MediaCollectionData
 import com.frogsm.instagram_demo.data.media.data.MediaData
 import com.frogsm.instagram_demo.data.media.data.MediaTypeData
 import com.frogsm.instagram_demo.domain.entity.Media
@@ -30,9 +31,13 @@ class MediaRepositoryImpl @Inject constructor(
     }
 
     override suspend fun getMediaCollection(): MediaCollection {
-        return mediaDataSource.getMediaCollection().data
-            .map { it.mapToEntity() }
-            .run { MediaCollection(this) }
+        val data = mediaDataSource.getMediaCollection()
+        return data.mapToEntity()
+    }
+
+    override suspend fun getMediaCollection(url: String): MediaCollection {
+        val data = mediaDataSource.getMediaCollection(url)
+        return data.mapToEntity()
     }
 
     private fun MediaData.mapToEntity(): Media {
@@ -48,6 +53,13 @@ class MediaRepositoryImpl @Inject constructor(
             caption = caption,
             thumbnailUrl = thumbnail_url,
             timeStamp = timestamp
+        )
+    }
+
+    private fun MediaCollectionData.mapToEntity(): MediaCollection {
+        return MediaCollection(
+            medias = data.map { it.mapToEntity() },
+            nextPageUrl = paging?.next
         )
     }
 }

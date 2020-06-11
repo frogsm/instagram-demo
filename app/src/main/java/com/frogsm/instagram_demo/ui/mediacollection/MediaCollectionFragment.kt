@@ -17,6 +17,7 @@ import com.frogsm.instagram_demo.extensions.toDp
 import com.frogsm.instagram_demo.ui.ViewModelFactory
 import com.frogsm.instagram_demo.ui.base.BaseFragment
 import com.frogsm.instagram_demo.ui.mediacollection.list.MediaCollectionAdapter
+import com.frogsm.instagram_demo.util.bindPageableScroll
 import kotlinx.android.synthetic.main.fragment_media_collection.*
 import kotlinx.android.synthetic.main.layout_user_card.*
 import javax.inject.Inject
@@ -61,6 +62,8 @@ class MediaCollectionFragment : BaseFragment(R.layout.fragment_media_collection)
                     }
                 }
             })
+
+            bindPageableScroll(this@MediaCollectionFragment, viewModel)
         }
     }
 

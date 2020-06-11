@@ -6,6 +6,7 @@ import com.frogsm.instagram_demo.data.media.data.MediaData
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
+import retrofit2.http.Url
 
 interface MediaApi {
 
@@ -31,5 +32,10 @@ interface MediaApi {
     @GET("/me/media")
     suspend fun getMediaCollection(
         @Query("fields") fields: String = MEDIA_FIELDS
+    ): MediaCollectionData
+
+    @GET
+    suspend fun getMediaCollectionFromUrl(
+        @Url url: String
     ): MediaCollectionData
 }

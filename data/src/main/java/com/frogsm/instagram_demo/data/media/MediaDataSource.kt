@@ -21,4 +21,8 @@ class MediaDataSource @Inject constructor(
     suspend fun getMediaCollection(): MediaCollectionData {
         return mediaApi.getMediaCollection()
     }
+
+    suspend fun getMediaCollection(url: String): MediaCollectionData {
+        return mediaApi.getMediaCollectionFromUrl(url)
+    }
 }

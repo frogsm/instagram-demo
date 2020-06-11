@@ -11,4 +11,6 @@ interface MediaRepository {
     suspend fun getMediaDetail(id: String): MediaDetail
 
     suspend fun getMediaCollection(): MediaCollection
+
+    suspend fun getMediaCollection(url: String): MediaCollection
 }
