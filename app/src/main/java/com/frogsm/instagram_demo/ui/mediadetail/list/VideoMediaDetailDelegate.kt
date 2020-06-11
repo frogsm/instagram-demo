@@ -2,6 +2,7 @@ package com.frogsm.instagram_demo.ui.mediadetail.list
 
 import android.graphics.Color
 import android.net.Uri
+import android.util.Log
 import android.view.View
 import com.frogsm.instagram_demo.R
 import com.frogsm.instagram_demo.extensions.displayImage
@@ -15,6 +16,7 @@ import javax.inject.Inject
 
 interface VideoMediaDetailDelegate {
     fun initUi(item: MediaChildrenItem.Video, view: View)
+    fun recycleUi(item: MediaChildrenItem.Video, view: View)
 }
 
 class VideoMediaDetailDelegateImpl @Inject constructor(
@@ -54,6 +56,17 @@ class VideoMediaDetailDelegateImpl @Inject constructor(
                     setShutterBackgroundColor(Color.WHITE)
                 }
             }
+        }
+    }
+
+    override fun recycleUi(item: MediaChildrenItem.Video, view: View) {
+        with(view) {
+            Log.d("frogsm", "recycle: ")
+            playerView.player?.apply {
+                stop()
+                release()
+            }
+            playerView.player = null
         }
     }
 }

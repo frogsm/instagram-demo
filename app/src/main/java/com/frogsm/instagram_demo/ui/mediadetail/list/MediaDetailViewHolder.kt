@@ -9,7 +9,14 @@ class MediaDetailViewHolder @Inject constructor(
     override val containerView: View
 ) : RecyclerView.ViewHolder(containerView), LayoutContainer {
 
+    private var item: MediaChildrenItem? = null
+
     fun onBind(delegate: MediaDetailDelegate, item: MediaChildrenItem) {
+        this.item = item
         item.presentUi(delegate, containerView)
+    }
+
+    fun onRecycled(delegate: MediaDetailDelegate) {
+        item?.recycleUi(delegate, containerView)
     }
 }

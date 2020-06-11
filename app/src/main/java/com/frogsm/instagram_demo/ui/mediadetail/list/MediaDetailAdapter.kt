@@ -44,6 +44,11 @@ class MediaDetailAdapter @Inject constructor(
 
     override fun getItemViewType(position: Int): Int = mediaChildrenItems[position].layoutId
 
+    override fun onViewRecycled(holder: MediaDetailViewHolder) {
+        super.onViewRecycled(holder)
+        holder.onRecycled(delegate)
+    }
+
     fun replaceData(items: List<MediaChildrenItem>) {
         mediaChildrenItems.replaceAll(items)
     }

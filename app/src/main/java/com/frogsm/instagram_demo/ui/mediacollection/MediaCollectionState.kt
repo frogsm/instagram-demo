@@ -30,11 +30,15 @@ class MediaCollectionState(
     val loadSuccessPageUrlSet: HashSet<String> = hashSetOf()
 
     // items
+    private val mediaCollectionLock = Any()
+
     private val innerMediaCollectionItems =
         sortedSetOf<MediaCollectionItem>(compareBy { it.index })
 
     override val mediaCollectionItems: List<MediaCollectionItem>
-        get() = innerMediaCollectionItems.toList()
+        get() = synchronized(mediaCollectionLock) {
+            innerMediaCollectionItems.toList()
+        }
 
     private var collectionProgressBarEnabled = true
 
@@ -52,7 +56,10 @@ class MediaCollectionState(
         }
 
         this.nextPageUrl = nextPageUrl
-        innerMediaCollectionItems.addAll(items)
+
+        synchronized(mediaCollectionLock) {
+            innerMediaCollectionItems.addAll(items)
+        }
     }
 
     fun failureGetMediaCollection(url: String?) {
