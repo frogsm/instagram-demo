@@ -48,6 +48,7 @@ class MediaDetailFragment : BaseFragment(R.layout.fragment_media_detail) {
             author.text = state.authorText
             summaryContent.text = state.summaryContentText
             extraContent.text = state.extraContentText
+            writtenTime.text = state.writtenTime
 
             mediaDetailAdapter.replaceData(state.mediaDetailItem.children)
         }

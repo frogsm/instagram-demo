@@ -8,6 +8,7 @@ interface MediaDetailStateBindable {
     val authorText: String
     val summaryContentText: String
     val extraContentText: String
+    val writtenTime: String
     var mediaDetailItem: MediaDetailItem
 }
 
@@ -27,6 +28,9 @@ class MediaDetailState(
 
     override val extraContentText: String
         get() = mediaDetailItem.extraCaption
+
+    override val writtenTime: String
+        get() = mediaDetailItem.timeStamp
 
     fun initialize(userName: String) {
         toolbarTitle = userName
