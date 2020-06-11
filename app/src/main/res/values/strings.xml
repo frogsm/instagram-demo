@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">instagram-demo</string>
-    <string name="facebook_app_id">667509350477967</string>
 
     <!--
     ID, PASSWORD 입력 방식으로 로그인하는 것이 불가능해서,

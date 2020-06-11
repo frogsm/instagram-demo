@@ -71,8 +71,6 @@ dependencies {
     implementation deps.moshi.kotlin
     kapt deps.moshi.kotlin_codegen
 
-    implementation deps.facebook.base
-
     implementation deps.glide.base
     kapt deps.glide.compiler
 
