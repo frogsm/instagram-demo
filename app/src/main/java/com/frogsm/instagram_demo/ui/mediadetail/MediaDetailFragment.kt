@@ -2,6 +2,7 @@ package com.frogsm.instagram_demo.ui.mediadetail
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.observe
 import androidx.navigation.fragment.navArgs
@@ -42,6 +43,7 @@ class MediaDetailFragment : BaseFragment(R.layout.fragment_media_detail) {
     private fun initBinding() {
         viewModel.liveData.observe(viewLifecycleOwner) { state ->
             toolbar.title = state.toolbarTitle
+            indicator.isVisible = state.indicatorVisible
 
             mediaDetailAdapter.replaceData(state.mediaDetailItem.children)
         }
