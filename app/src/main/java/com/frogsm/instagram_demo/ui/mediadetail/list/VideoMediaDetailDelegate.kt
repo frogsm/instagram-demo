@@ -2,8 +2,8 @@ package com.frogsm.instagram_demo.ui.mediadetail.list
 
 import android.net.Uri
 import android.view.View
-import androidx.core.view.isGone
 import com.frogsm.instagram_demo.R
+import com.frogsm.instagram_demo.extensions.displayThumbnail
 import com.google.android.exoplayer2.ExoPlaybackException
 import com.google.android.exoplayer2.Player
 import com.google.android.exoplayer2.SimpleExoPlayer
@@ -28,6 +28,16 @@ class VideoMediaDetailDelegateImpl @Inject constructor(
                 ProgressiveMediaSource.Factory(dataSourceFactory)
                     .createMediaSource(Uri.parse(item.mediaUrl))
 
+            val playerErrorListener = object : Player.EventListener {
+                override fun onPlayerError(error: ExoPlaybackException) {
+                    when (error.type) {
+                        ExoPlaybackException.TYPE_SOURCE -> {
+                            imageView.displayThumbnail(item.mediaUrl)
+                        }
+                    }
+                }
+            }
+
             playerView.apply {
                 useController = false
                 controllerAutoShow = false
@@ -37,15 +47,7 @@ class VideoMediaDetailDelegateImpl @Inject constructor(
                     it.repeatMode = Player.REPEAT_MODE_ALL
 
                     it.prepare(mediaSource)
-                    it.addListener(object : Player.EventListener {
-                        override fun onPlayerError(error: ExoPlaybackException) {
-                            when (error.type) {
-                                ExoPlaybackException.TYPE_SOURCE -> {
-                                    playerView.isGone = true
-                                }
-                            }
-                        }
-                    })
+                    it.addListener(playerErrorListener)
                 }
             }
         }

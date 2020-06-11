@@ -16,8 +16,8 @@ fun MediaDetail.mapToMediaDetailItem(): MediaDetailItem {
             MediaType.VIDEO -> listOf(MediaChildrenItem.Video(0, media.mediaUrl))
             MediaType.ALBUM -> children.mapIndexed { index, child ->
                 when (child.mediaType) {
-                    MediaType.IMAGE -> MediaChildrenItem.Image(index, media.mediaUrl)
-                    MediaType.VIDEO -> MediaChildrenItem.Video(index, media.mediaUrl)
+                    MediaType.IMAGE -> MediaChildrenItem.Image(index, child.mediaUrl)
+                    MediaType.VIDEO -> MediaChildrenItem.Video(index, child.mediaUrl)
                     MediaType.ALBUM -> throw IllegalStateException()
                 }
             }
