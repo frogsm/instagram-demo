@@ -30,6 +30,7 @@ versions.retrofit = "2.9.0"
 versions.okhttp = "4.7.2"
 versions.moshi = "1.9.2"
 versions.glide = "4.11.0"
+versions.realm = '6.0.2'
 versions.exo_player = "2.11.5"
 versions.circle_indicator = "2.1.4"
 
@@ -54,6 +55,7 @@ def plugin = [:]
 plugin.android = "com.android.tools.build:gradle:$versions.gradle"
 plugin.kotlin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin"
 plugin.navigation = "androidx.navigation:navigation-safe-args-gradle-plugin:$versions.navigation"
+plugin.realm = "io.realm:realm-gradle-plugin:$versions.realm"
 deps.plugin = plugin
 
 
