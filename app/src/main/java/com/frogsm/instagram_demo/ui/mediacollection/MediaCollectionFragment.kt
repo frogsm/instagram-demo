@@ -41,6 +41,7 @@ class MediaCollectionFragment : BaseFragment(R.layout.fragment_media_collection)
     }
 
     private fun initUi() {
+        coordinatorLayout.requestApplyInsets()
         collectionList.apply {
             adapter = mediaCollectionAdapter
             layoutManager = GridLayoutManager(requireContext(), 3)
