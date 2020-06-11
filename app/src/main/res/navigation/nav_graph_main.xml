@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_main"
+    app:startDestination="@id/splashFragment">
+
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.frogsm.instagram_demo.ui.splash.SplashFragment"
+        android:label="SplashFragment"
+        tools:layout="@layout/fragment_splash">
+
+        <action
+            android:id="@+id/action_splashFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit"
+            app:popUpTo="@id/splashFragment"
+            app:popUpToInclusive="true" />
+
+        <action
+            android:id="@+id/action_splashFragment_to_mediaCollectionFragment"
+            app:destination="@id/mediaCollectionFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit"
+            app:popUpTo="@id/splashFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.frogsm.instagram_demo.ui.login.LoginFragment"
+        android:label="LoginFragment"
+        tools:layout="@layout/fragment_login">
+
+        <action
+            android:id="@+id/action_loginFragment_to_authorizeFragment"
+            app:destination="@id/authorizeFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
+
+        <action
+            android:id="@+id/action_loginFragment_to_mediaCollectionFragment"
+            app:destination="@id/mediaCollectionFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/authorizeFragment"
+        android:name="com.frogsm.instagram_demo.ui.authorize.AuthorizeFragment"
+        android:label="AuthorizeFragment"
+        tools:layout="@layout/fragment_authorize">
+        <argument
+            android:name="clientId"
+            app:argType="string" />
+        <argument
+            android:name="clientSecretId"
+            app:argType="string" />
+        <argument
+            android:name="redirectUri"
+            app:argType="string" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/mediaCollectionFragment"
+        android:name="com.frogsm.instagram_demo.ui.mediacollection.MediaCollectionFragment"
+        android:label="MediaCollectionFragment"
+        tools:layout="@layout/fragment_media_collection">
+        <argument
+            android:name="userName"
+            app:argType="string" />
+
+        <action
+            android:id="@+id/action_mediaCollectionFragment_to_mediaDetailFragment"
+            app:destination="@id/mediaDetailFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/mediaDetailFragment"
+        android:name="com.frogsm.instagram_demo.ui.mediadetail.MediaDetailFragment"
+        android:label="MediaDetailFragment"
+        tools:layout="@layout/fragment_media_detail">
+        <argument
+            android:name="userName"
+            app:argType="string" />
+        <argument
+            android:name="mediaId"
+            app:argType="string" />
+    </fragment>
+</navigation>

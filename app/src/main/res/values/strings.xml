@@ -1,3 +1,30 @@
 <resources>
     <string name="app_name">instagram-demo</string>
+
+    <!--
+    ID, PASSWORD 입력 방식으로 로그인하는 것이 불가능해서,
+    미리 테스터 계정으로 등록해둔 클라이언트 아이디 정보를 이용해서 로그인 하도록 함.
+    -->
+    <string name="user_id">2708291786122110</string>
+    <string name="user_secret_id">2cf7bb7184c0a93eccbd3be05b9549d1</string>
+    <string name="redirect_url">https://www.kakaopay.com/</string>
+
+    <string name="login_id">@string/client_id</string>
+    <string name="login_secret_id">클라이언트 시크릿 아이디</string>
+    <string name="login_redirect_uri">리다이렉트 URI</string>
+
+    <!-- Word -->
+    <string name="login">로그인</string>
+    <string name="feed">게시물</string>
+    <string name="follower">팔로워</string>
+    <string name="following">팔로잉</string>
+    <string name="client_id">클라이언트 아이디</string>
+
+    <!-- Error -->
+    <string name="common_error">오류가 발생했습니다.</string>
+    <string name="error_invalidate_uri">형식이 맞지 않은 URI 입니다.</string>
+    <string name="error_not_founded_slash">URI 맨 뒤에 슬래시(\'\/\')를 붙여주세요.</string>
+    <string name="error_oauth_authorize_uri">Oauth 인증 URI 생성에 실패했습니다.</string>
+    <string name="error_access_token_obtain">액세스 토큰 생성이 실패했습니다.</string>
+    <string name="error_access_token_expired">토큰이 만료되었습니다.</string>
 </resources>

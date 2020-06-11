@@ -1,0 +1,68 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion build_versions.compile_sdk
+    buildToolsVersion build_versions.build_tools
+
+    defaultConfig {
+        minSdkVersion build_versions.min_sdk
+        targetSdkVersion build_versions.target_sdk
+        versionCode build_versions.code
+        versionName build_versions.name
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility = '1.8'
+        targetCompatibility = '1.8'
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+        freeCompilerArgs = ["-Xallow-result-return-type"]
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+
+    implementation project(path: ':domain')
+
+    implementation deps.kotlin.stdlib
+
+    implementation deps.coroutines.core
+
+    implementation deps.androidx.core_ktx
+    implementation deps.androidx.appcompat
+
+    implementation deps.dagger.base
+    implementation deps.dagger.android
+    implementation deps.dagger.android_support
+    kapt deps.dagger.compiler
+    kapt deps.dagger.compiler_processor
+
+    implementation deps.retrofit.base
+    implementation deps.retrofit.convert_moshi
+
+    implementation deps.okhttp.logging_interceptor
+
+    implementation deps.moshi.kotlin
+    kapt deps.moshi.kotlin_codegen
+
+    testImplementation deps.test.junit
+    androidTestImplementation deps.test.ext_junit
+    androidTestImplementation deps.test.espresso
+
+}

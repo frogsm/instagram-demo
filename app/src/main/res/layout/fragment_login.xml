@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingHorizontal="24dp">
+
+    <ImageView
+        android:id="@+id/instagramLogo"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/ic_instagram"
+        app:layout_constraintBottom_toTopOf="@id/clientId"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <TextView
+        android:id="@+id/clientId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/login_id"
+        app:layout_constraintBottom_toTopOf="@id/clientIdEditBox"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/instagramLogo" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/clientIdEditBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:nextFocusDown="@id/clientSecretIdEditBox"
+        app:layout_constraintBottom_toTopOf="@id/clientSecretId"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/clientId" />
+
+    <TextView
+        android:id="@+id/clientSecretId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/login_secret_id"
+        app:layout_constraintBottom_toTopOf="@id/clientSecretIdEditBox"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/clientIdEditBox" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/clientSecretIdEditBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:nextFocusDown="@id/redirectUriEditBox"
+        app:layout_constraintBottom_toTopOf="@id/redirectUri"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/clientSecretId" />
+
+    <TextView
+        android:id="@+id/redirectUri"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/login_redirect_uri"
+        app:layout_constraintBottom_toTopOf="@id/redirectUriEditBox"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/clientSecretIdEditBox" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/redirectUriEditBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:imeOptions="actionDone"
+        android:inputType="text"
+        app:layout_constraintBottom_toTopOf="@id/loginButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/redirectUri" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/loginButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="8dp"
+        android:text="@string/login"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/redirectUriEditBox" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
