@@ -44,6 +44,7 @@ class MediaDetailFragment : BaseFragment(R.layout.fragment_media_detail) {
         viewModel.liveData.observe(viewLifecycleOwner) { state ->
             toolbar.title = state.toolbarTitle
             indicator.isVisible = state.indicatorVisible
+            progressBar.isVisible = state.progressBarVisible
 
             author.text = state.authorText
             summaryContent.text = state.summaryContentText

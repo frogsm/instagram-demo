@@ -5,6 +5,7 @@ import com.frogsm.instagram_demo.ui.mediadetail.detail.MediaDetailItem
 interface MediaDetailStateBindable {
     var toolbarTitle: String
     val indicatorVisible: Boolean
+    var progressBarVisible: Boolean
     val authorText: String
     val summaryContentText: String
     val extraContentText: String
@@ -14,6 +15,7 @@ interface MediaDetailStateBindable {
 
 class MediaDetailState(
     override var toolbarTitle: String = "",
+    override var progressBarVisible: Boolean = true,
     override var mediaDetailItem: MediaDetailItem = MediaDetailItem.EMPTY
 ) : MediaDetailStateBindable {
 
@@ -42,5 +44,9 @@ class MediaDetailState(
 
     fun failureGetMediaDetail() {
 
+    }
+
+    fun showProgressBar(visible: Boolean) {
+        progressBarVisible = visible
     }
 }

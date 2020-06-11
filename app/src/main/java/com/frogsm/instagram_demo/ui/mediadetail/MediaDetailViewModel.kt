@@ -32,6 +32,7 @@ class MediaDetailViewModel @Inject constructor(
     private suspend fun getMediaDetail(
         mediaId: String
     ) = withContext(Dispatchers.IO) {
+        showProgressBar(true)
 
         GetMediaDetail.Request(mediaId)
             .run { getMediaDetail(this) }
@@ -45,5 +46,12 @@ class MediaDetailViewModel @Inject constructor(
                 state.failureGetMediaDetail()
                 liveData.postValue(state)
             }
+
+        showProgressBar(false)
+    }
+
+    private fun showProgressBar(visible: Boolean) {
+        state.showProgressBar(visible)
+        liveData.postValue(state)
     }
 }

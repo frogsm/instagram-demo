@@ -72,7 +72,7 @@ class MediaCollectionViewModel @Inject constructor(
         showProgressBar(false)
     }
 
-    private suspend fun showProgressBar(visible: Boolean) {
+    private fun showProgressBar(visible: Boolean) {
         state.showProgressBar(visible)
         liveData.postValue(state)
     }
