@@ -22,7 +22,7 @@ fun ImageView.displayThumbnail(
 
     Glide.with(this)
         .load(uri)
-        .thumbnail(0.75f)
+        .thumbnail(0.3f)
         .apply(applyActions.invoke(RequestOptions()))
         .into(this)
 }
