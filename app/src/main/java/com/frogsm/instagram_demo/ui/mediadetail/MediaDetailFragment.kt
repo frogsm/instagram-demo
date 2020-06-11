@@ -45,6 +45,10 @@ class MediaDetailFragment : BaseFragment(R.layout.fragment_media_detail) {
             toolbar.title = state.toolbarTitle
             indicator.isVisible = state.indicatorVisible
 
+            author.text = state.authorText
+            summaryContent.text = state.summaryContentText
+            extraContent.text = state.extraContentText
+
             mediaDetailAdapter.replaceData(state.mediaDetailItem.children)
         }
     }

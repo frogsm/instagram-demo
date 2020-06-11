@@ -6,10 +6,15 @@ import com.frogsm.instagram_demo.ui.mediadetail.detail.MediaDetailItem
 import com.frogsm.instagram_demo.ui.mediadetail.list.MediaChildrenItem
 
 fun MediaDetail.mapToMediaDetailItem(): MediaDetailItem {
+    val lines = media.caption?.lines()
+    val summary = lines?.first() ?: ""
+    val extra = media.caption?.removePrefix(summary)?.removePrefix("\n") ?: ""
+
     return MediaDetailItem(
         id = media.id,
         userName = media.userName ?: "",
-        caption = media.caption ?: "",
+        summaryCaption = summary,
+        extraCaption = extra,
         timeStamp = media.timeStamp ?: "",
         children = when (media.mediaType) {
             MediaType.IMAGE -> listOf(MediaChildrenItem.Image(0, media.mediaUrl))
