@@ -57,7 +57,7 @@ class MediaCollectionViewModel @Inject constructor(
 
     private suspend fun getMediaCollection(
     ) = withContext(Dispatchers.IO) {
-        showProgressBar(true)
+        showMediaCollectionProgressBar(true)
 
         getMediaCollection(Unit)
             .map { it.mapToMediaCollectionItems() }
@@ -69,11 +69,11 @@ class MediaCollectionViewModel @Inject constructor(
                 cancel()
             }
 
-        showProgressBar(false)
+        showMediaCollectionProgressBar(false)
     }
 
-    private fun showProgressBar(visible: Boolean) {
-        state.showProgressBar(visible)
+    private fun showMediaCollectionProgressBar(visible: Boolean) {
+        state.showMediaCollectionProgressBar(visible)
         liveData.postValue(state)
     }
 }

@@ -27,6 +27,8 @@ class MediaCollectionState(
     override var navigateMediaDetail: Event<Pair<String, String>>? = null
 ) : MediaCollectionStateBindable {
 
+    private var collectionProgressBarEnabled = true
+
     fun initialize(userName: String) {
         toolbarTitle = userName
     }
@@ -35,6 +37,7 @@ class MediaCollectionState(
         items: List<MediaCollectionItem>
     ) {
         mediaCollectionItems = items
+        collectionProgressBarEnabled = false
     }
 
     fun successGetUser(item: UserItem) {
@@ -47,6 +50,10 @@ class MediaCollectionState(
 
     fun showProgressBar(visible: Boolean) {
         progressBarVisible = visible
+    }
+
+    fun showMediaCollectionProgressBar(visible: Boolean) {
+        progressBarVisible = visible && collectionProgressBarEnabled
     }
 
     fun onMediaCollectionItemClicked(mediaId: String) {
