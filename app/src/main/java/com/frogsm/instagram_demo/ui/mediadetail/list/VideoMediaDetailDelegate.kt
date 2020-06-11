@@ -1,9 +1,10 @@
 package com.frogsm.instagram_demo.ui.mediadetail.list
 
+import android.graphics.Color
 import android.net.Uri
 import android.view.View
 import com.frogsm.instagram_demo.R
-import com.frogsm.instagram_demo.extensions.displayThumbnail
+import com.frogsm.instagram_demo.extensions.displayImage
 import com.google.android.exoplayer2.ExoPlaybackException
 import com.google.android.exoplayer2.Player
 import com.google.android.exoplayer2.SimpleExoPlayer
@@ -33,7 +34,7 @@ class VideoMediaDetailDelegateImpl @Inject constructor(
                     when (error.type) {
                         ExoPlaybackException.TYPE_SOURCE -> {
                             // 플레이어로 재생할 수 없는 경우에는 GIF 파일로 판단하여 글라이드로 보여주기
-                            imageView.displayThumbnail(item.mediaUrl)
+                            imageView.displayImage(item.mediaUrl)
                         }
                     }
                 }
@@ -49,6 +50,7 @@ class VideoMediaDetailDelegateImpl @Inject constructor(
 
                     it.prepare(mediaSource)
                     it.addListener(playerErrorListener)
+                    setShutterBackgroundColor(Color.WHITE)
                 }
             }
         }

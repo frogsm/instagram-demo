@@ -22,6 +22,7 @@ class MediaDetailViewModel @Inject constructor(
 
     override fun start(userName: String, mediaId: String) {
         state.initialize(userName)
+        liveData.postValue(state)
 
         viewModelScope.launch {
             launch { getMediaDetail(mediaId) }
