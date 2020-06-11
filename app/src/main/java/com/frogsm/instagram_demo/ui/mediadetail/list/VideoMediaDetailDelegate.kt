@@ -32,6 +32,7 @@ class VideoMediaDetailDelegateImpl @Inject constructor(
                 override fun onPlayerError(error: ExoPlaybackException) {
                     when (error.type) {
                         ExoPlaybackException.TYPE_SOURCE -> {
+                            // 플레이어로 재생할 수 없는 경우에는 GIF 파일로 판단하여 글라이드로 보여주기
                             imageView.displayThumbnail(item.mediaUrl)
                         }
                     }
