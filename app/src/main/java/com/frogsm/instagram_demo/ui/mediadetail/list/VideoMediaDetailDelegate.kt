@@ -43,6 +43,7 @@ class VideoMediaDetailDelegateImpl @Inject constructor(
             playerView.apply {
                 useController = false
                 controllerAutoShow = false
+                setKeepContentOnPlayerReset(true)
 
                 player = SimpleExoPlayer.Builder(context).build().also {
                     it.playWhenReady = true

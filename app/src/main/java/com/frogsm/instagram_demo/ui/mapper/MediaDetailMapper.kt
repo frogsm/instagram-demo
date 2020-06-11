@@ -23,11 +23,17 @@ fun MediaDetail.mapToMediaDetailItem(): MediaDetailItem {
         children = when (media.mediaType) {
             MediaType.IMAGE -> listOf(MediaChildrenItem.Image(0, media.mediaUrl))
             MediaType.VIDEO -> listOf(MediaChildrenItem.Video(0, media.mediaUrl))
-            MediaType.ALBUM -> children.mapIndexed { index, child ->
-                when (child.mediaType) {
-                    MediaType.IMAGE -> MediaChildrenItem.Image(index, child.mediaUrl)
-                    MediaType.VIDEO -> MediaChildrenItem.Video(index, child.mediaUrl)
-                    MediaType.ALBUM -> throw IllegalStateException()
+            MediaType.ALBUM -> {
+                if (children.isEmpty()) {
+                    listOf(MediaChildrenItem.Image(0, media.mediaUrl))
+                } else {
+                    children.mapIndexed { index, child ->
+                        when (child.mediaType) {
+                            MediaType.IMAGE -> MediaChildrenItem.Image(index, child.mediaUrl)
+                            MediaType.VIDEO -> MediaChildrenItem.Video(index, child.mediaUrl)
+                            MediaType.ALBUM -> throw IllegalStateException()
+                        }
+                    }
                 }
             }
         }
