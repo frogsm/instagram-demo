@@ -28,7 +28,7 @@ class MediaRepositoryImpl @Inject constructor(
         val cache = mediaLocalDataSource.getMedia(id)
         if (cache != null) {
             val detailData = cache.mapToEntity()
-            emit(MediaDetail(detailData, emptyList<Media>()))
+            emit(MediaDetail(detailData, emptyList<Media>(), true))
         }
 
         val detailData = mediaRemoteDataSource.getMedia(id)
@@ -37,7 +37,8 @@ class MediaRepositoryImpl @Inject constructor(
         val result = MediaDetail(
             media = detailData.mapToEntity(),
             children = childrenData.data
-                .map { it.mapToEntity() }
+                .map { it.mapToEntity() },
+            isCached = false
         )
 
         emit(result)

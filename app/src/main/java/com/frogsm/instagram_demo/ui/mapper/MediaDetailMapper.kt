@@ -22,9 +22,15 @@ fun MediaDetail.mapToMediaDetailItem(): MediaDetailItem {
         timeStamp = time,
         children = when (media.mediaType) {
             MediaType.IMAGE -> listOf(MediaChildrenItem.Image(0, media.mediaUrl))
-            MediaType.VIDEO -> listOf(MediaChildrenItem.Video(0, media.mediaUrl))
+            MediaType.VIDEO -> {
+                if (isCached) {
+                    listOf(MediaChildrenItem.Image(0, media.mediaUrl))
+                } else {
+                    listOf(MediaChildrenItem.Video(0, media.mediaUrl))
+                }
+            }
             MediaType.ALBUM -> {
-                if (children.isEmpty()) {
+                if (isCached) {
                     listOf(MediaChildrenItem.Image(0, media.mediaUrl))
                 } else {
                     children.mapIndexed { index, child ->
