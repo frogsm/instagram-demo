@@ -17,6 +17,7 @@ https://developers.facebook.com 접속하여 개발자 계정을 통해 테스�
 - AndroidX (activity, fragment, lifecycle, view pager, navigation, constraint layout)
 - Dagger
 - Retrofit
+- Realm
 - Moshi
 - Glide
 - ExoPlayer
