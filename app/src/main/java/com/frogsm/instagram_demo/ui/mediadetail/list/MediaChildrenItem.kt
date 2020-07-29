@@ -19,6 +19,10 @@ sealed class MediaChildrenItem(
         override fun presentUi(delegate: MediaDetailDelegate, view: View) {
             delegate.initUi(this, view)
         }
+
+        override fun recycleUi(delegate: MediaDetailDelegate, view: View) {
+            delegate.recycleUi(this, view)
+        }
     }
 
     data class Video(
@@ -30,9 +34,14 @@ sealed class MediaChildrenItem(
         override fun presentUi(delegate: MediaDetailDelegate, view: View) {
             delegate.initUi(this, view)
         }
+
+        override fun recycleUi(delegate: MediaDetailDelegate, view: View) {
+            delegate.recycleUi(this, view)
+        }
     }
 }
 
 interface Presenter {
     fun presentUi(delegate: MediaDetailDelegate, view: View)
+    fun recycleUi(delegate: MediaDetailDelegate, view: View)
 }

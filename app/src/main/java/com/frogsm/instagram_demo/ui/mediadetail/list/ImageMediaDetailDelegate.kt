@@ -7,6 +7,7 @@ import javax.inject.Inject
 
 interface ImageMediaDetailDelegate {
     fun initUi(item: MediaChildrenItem.Image, view: View)
+    fun recycleUi(item: MediaChildrenItem.Image, view: View)
 }
 
 class ImageMediaDetailDelegateImpl @Inject constructor(
@@ -16,5 +17,9 @@ class ImageMediaDetailDelegateImpl @Inject constructor(
         with(view) {
             media.displayThumbnail(item.mediaUrl)
         }
+    }
+
+    override fun recycleUi(item: MediaChildrenItem.Image, view: View) {
+
     }
 }

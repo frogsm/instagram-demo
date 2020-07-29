@@ -6,7 +6,7 @@ import com.frogsm.instagram_demo.data.media.data.MediaCollectionData
 import com.frogsm.instagram_demo.data.media.data.MediaData
 import javax.inject.Inject
 
-class MediaDataSource @Inject constructor(
+class MediaRemoteDataSource @Inject constructor(
     private val mediaApi: MediaApi
 ) {
 

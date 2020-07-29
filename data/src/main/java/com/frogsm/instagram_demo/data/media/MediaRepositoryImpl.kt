@@ -8,35 +8,51 @@ import com.frogsm.instagram_demo.domain.entity.MediaCollection
 import com.frogsm.instagram_demo.domain.entity.MediaDetail
 import com.frogsm.instagram_demo.domain.entity.MediaType
 import com.frogsm.instagram_demo.domain.repository.MediaRepository
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
 class MediaRepositoryImpl @Inject constructor(
-    private val mediaDataSource: MediaDataSource
+    private val mediaLocalDataSource: MediaLocalDataSource,
+    private val mediaRemoteDataSource: MediaRemoteDataSource
 ) : MediaRepository {
 
     override suspend fun getMedia(id: String): Media {
-        val data = mediaDataSource.getMedia(id)
+        val data = mediaRemoteDataSource.getMedia(id)
         return data.mapToEntity()
     }
 
-    override suspend fun getMediaDetail(id: String): MediaDetail {
-        val detailData = mediaDataSource.getMedia(id)
-        val childrenData = mediaDataSource.getMediaChildren(id)
+    override fun getCacheThenFreshMediaDetail(
+        id: String
+    ): Flow<MediaDetail> = flow {
+        val cache = mediaLocalDataSource.getMedia(id)
+        if (cache != null) {
+            val detailData = cache.mapToEntity()
+            emit(MediaDetail(detailData, emptyList<Media>(), true))
+        }
 
-        return MediaDetail(
+        val detailData = mediaRemoteDataSource.getMedia(id)
+        val childrenData = mediaRemoteDataSource.getMediaChildren(id)
+
+        val result = MediaDetail(
             media = detailData.mapToEntity(),
             children = childrenData.data
-                .map { it.mapToEntity() }
+                .map { it.mapToEntity() },
+            isCached = false
         )
+
+        emit(result)
     }
 
     override suspend fun getMediaCollection(): MediaCollection {
-        val data = mediaDataSource.getMediaCollection()
+        val data = mediaRemoteDataSource.getMediaCollection()
+        mediaLocalDataSource.addMedias(data.data)
         return data.mapToEntity()
     }
 
     override suspend fun getMediaCollection(url: String): MediaCollection {
-        val data = mediaDataSource.getMediaCollection(url)
+        val data = mediaRemoteDataSource.getMediaCollection(url)
+        mediaLocalDataSource.addMedias(data.data)
         return data.mapToEntity()
     }
 

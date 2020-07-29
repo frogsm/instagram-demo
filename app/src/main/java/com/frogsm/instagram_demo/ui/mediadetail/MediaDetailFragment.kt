@@ -31,6 +31,11 @@ class MediaDetailFragment : BaseFragment(R.layout.fragment_media_detail) {
         viewModel.start(args.userName, args.mediaId)
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        childrenList.adapter = null
+    }
+
     private fun initUi() {
         childrenList.apply {
             adapter = mediaDetailAdapter.also {
