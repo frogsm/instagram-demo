@@ -2,8 +2,10 @@ package com.frogsm.instagram_demo.ui
 
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.observe
 import com.frogsm.instagram_demo.R
+import com.frogsm.instagram_demo.databinding.ActivityMainBinding
 import com.frogsm.instagram_demo.util.IntentPendingEventStoreImpl
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dagger.android.support.DaggerAppCompatActivity
@@ -14,13 +16,14 @@ class MainActivity : DaggerAppCompatActivity() {
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
 
+    private var binding : ActivityMainBinding? = null
     val viewModel by viewModels<MainActivityViewModel> { viewModelFactory }
 
     private val pendingEventStore by lazy { IntentPendingEventStoreImpl(intent) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         initUi()
         initBinding()
     }
