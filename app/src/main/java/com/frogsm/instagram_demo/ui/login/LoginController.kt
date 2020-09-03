@@ -5,11 +5,11 @@ import android.text.Editable
 interface LoginController {
     fun start()
 
-    fun onClientIdChanged(text: CharSequence?)
+    fun onClientIdChanged(text: Editable?)
 
     fun onClientSecretIdChanged(text: Editable?)
 
-    fun onRedirectUriChanged(text: CharSequence?)
+    fun onRedirectUriChanged(text: Editable?)
 
     fun onLoginButtonClicked()
 }

@@ -20,8 +20,12 @@ class LoginViewModel @Inject constructor(
     private val validateLogin: ValidateLogin
 ) : ViewModel(), LoginController {
 
-    val liveData = MutableLiveData<LoginStateBindable>()
     private val state = LoginState(context.resources)
+    val singleLiveEvent = MutableLiveData<LoginStateSingleEvent>()
+
+    val clientId = MutableLiveData(state.clientId)
+    val clientSecretId = MutableLiveData(state.clientSecretId)
+    val redirectUri = MutableLiveData(state.redirectUri)
 
     override fun start() {
         viewModelScope.launch {
@@ -29,19 +33,19 @@ class LoginViewModel @Inject constructor(
         }
     }
 
-    override fun onClientIdChanged(text: CharSequence?) {
+    override fun onClientIdChanged(text: Editable?) {
         state.onClientIdChanged(text)
-        liveData.postValue(state)
+        clientId.postValue(state.clientId)
     }
 
     override fun onClientSecretIdChanged(text: Editable?) {
         state.onClientSecretIdChanged(text)
-        liveData.postValue(state)
+        clientSecretId.postValue(state.clientSecretId)
     }
 
-    override fun onRedirectUriChanged(text: CharSequence?) {
+    override fun onRedirectUriChanged(text: Editable?) {
         state.onRedirectUriChanged(text)
-        liveData.postValue(state)
+        redirectUri.postValue(state.redirectUri)
     }
 
     override fun onLoginButtonClicked() {
@@ -56,12 +60,12 @@ class LoginViewModel @Inject constructor(
         getUser(Unit)
             .onSuccess {
                 state.successGetUser(it.name)
-                liveData.postValue(state)
+                singleLiveEvent.postValue(state)
             }
             .onFailure {
                 cancel()
                 state.failureGetUser()
-                liveData.postValue(state)
+                singleLiveEvent.postValue(state)
             }
     }
 
@@ -72,7 +76,7 @@ class LoginViewModel @Inject constructor(
             .run { validateLogin(this) }
             .onSuccess {
                 state.successValidateLogin()
-                liveData.postValue(state)
+                singleLiveEvent.postValue(state)
             }
             .onFailure {
                 cancel()
@@ -85,7 +89,7 @@ class LoginViewModel @Inject constructor(
                         R.string.common_error
                 }
                 state.failureValidateLogin(messageId)
-                liveData.postValue(state)
+                singleLiveEvent.postValue(state)
             }
     }
 }

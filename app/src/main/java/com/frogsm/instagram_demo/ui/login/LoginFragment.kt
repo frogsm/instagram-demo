@@ -1,28 +1,41 @@
 package com.frogsm.instagram_demo.ui.login
 
 import android.os.Bundle
-import android.text.SpannableStringBuilder
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
-import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
 import com.frogsm.instagram_demo.R
+import com.frogsm.instagram_demo.databinding.FragmentLoginBinding
 import com.frogsm.instagram_demo.extensions.hideKeyboard
 import com.frogsm.instagram_demo.extensions.navigateSafely
 import com.frogsm.instagram_demo.extensions.showLongSnackBar
 import com.frogsm.instagram_demo.ui.ViewModelFactory
-import com.frogsm.instagram_demo.ui.base.BaseFragment
-import kotlinx.android.synthetic.main.fragment_login.*
+import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 
-class LoginFragment : BaseFragment(R.layout.fragment_login) {
+class LoginFragment : DaggerFragment() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
 
+    private var binding : FragmentLoginBinding? = null
     private val viewModel by viewModels<LoginViewModel> { viewModelFactory }
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        binding = FragmentLoginBinding.inflate(inflater, container, false).also {
+            it.viewModel = viewModel
+            it.lifecycleOwner = viewLifecycleOwner
+        }
+        return binding?.root
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -32,61 +45,38 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
     }
 
     private fun initUi() {
-        clientIdEditBox.doAfterTextChanged { text ->
-            viewModel.onClientIdChanged(text)
-        }
+        binding?.run {
 
-        clientSecretIdEditBox.doAfterTextChanged { text ->
-            viewModel.onClientSecretIdChanged(text)
-        }
-
-        redirectUriEditBox.doAfterTextChanged { text ->
-            viewModel.onRedirectUriChanged(text)
-        }
-
-        redirectUriEditBox.setOnEditorActionListener { v, actionId, _ ->
-            if (actionId == EditorInfo.IME_ACTION_DONE) {
-                hideKeyboard()
-                loginButton.performClick()
-                true
-            } else {
-                false
+            redirectUriEditBox.setOnEditorActionListener { v, actionId, _ ->
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+                    hideKeyboard()
+                    loginButton.performClick()
+                    true
+                } else {
+                    false
+                }
             }
-        }
 
-        loginButton.setOnClickListener {
-            viewModel.onLoginButtonClicked()
         }
     }
 
     private fun initBinding() {
-        viewModel.liveData.observe(viewLifecycleOwner) { state ->
-            clientIdEditBox
-                .takeIf { it.text.toString() != state.clientId }
-                ?.run { text = SpannableStringBuilder(state.clientId) }
+        viewModel.singleLiveEvent.observe(viewLifecycleOwner) { event ->
 
-            clientSecretIdEditBox
-                .takeIf { it.text.toString() != state.clientId }
-                ?.run { text = SpannableStringBuilder(state.clientSecretId) }
-
-            redirectUriEditBox
-                .takeIf { it.text.toString() != state.redirectUri }
-                ?.run { text = SpannableStringBuilder(state.redirectUri) }
-
-            state.showSnackBar?.observeOnlyOnce {
+            event.showSnackBar?.observeOnlyOnce {
                 showLongSnackBar(it)
             }
 
-            state.navigateToken?.observeOnlyOnce {
+            event.navigateToken?.observeOnlyOnce { info ->
                 val action = LoginFragmentDirections.actionLoginFragmentToAuthorizeFragment(
-                    clientId = state.clientId,
-                    clientSecretId = state.clientSecretId,
-                    redirectUri = state.redirectUri
+                    clientId = info.clientId,
+                    clientSecretId = info.clientSecretId,
+                    redirectUri = info.redirectUri
                 )
                 findNavController().navigateSafely(action)
             }
 
-            state.navigateMediaCollection?.observeOnlyOnce { userName ->
+            event.navigateMediaCollection?.observeOnlyOnce { userName ->
                 val action = LoginFragmentDirections.actionLoginFragmentToMediaCollectionFragment(
                     userName = userName
                 )

@@ -6,24 +6,27 @@ import androidx.annotation.StringRes
 import com.frogsm.instagram_demo.R
 import com.frogsm.instagram_demo.util.Event
 
-interface LoginStateBindable {
-    var clientId: String
-    var clientSecretId: String
-    var redirectUri: String
+interface LoginStateSingleEvent {
     var showSnackBar: Event<String>?
-    var navigateToken: Event<Unit>?
+    var navigateToken: Event<NavigateTokenInfo>?
     var navigateMediaCollection: Event<String>?
 }
 
 class LoginState(
     private val resources: Resources,
-    override var clientId: String = resources.getString(R.string.user_id),
-    override var clientSecretId: String = resources.getString(R.string.user_secret_id),
-    override var redirectUri: String = resources.getString(R.string.redirect_url),
     override var showSnackBar: Event<String>? = null,
-    override var navigateToken: Event<Unit>? = null,
+    override var navigateToken: Event<NavigateTokenInfo>? = null,
     override var navigateMediaCollection: Event<String>? = null
-) : LoginStateBindable {
+) : LoginStateSingleEvent {
+
+    var clientId = resources.getString(R.string.user_id)
+        private set
+
+    var clientSecretId = resources.getString(R.string.user_secret_id)
+        private set
+
+    var redirectUri = resources.getString(R.string.redirect_url)
+        private set
 
     fun onClientIdChanged(text: CharSequence?) {
         clientId = text?.toString() ?: ""
@@ -46,7 +49,8 @@ class LoginState(
     }
 
     fun successValidateLogin() {
-        navigateToken = Event(Unit)
+        val info = NavigateTokenInfo(clientId, clientSecretId, redirectUri)
+        navigateToken = Event(info)
     }
 
     fun failureValidateLogin(@StringRes resId: Int) {
@@ -54,3 +58,9 @@ class LoginState(
     }
 
 }
+
+data class NavigateTokenInfo(
+    val clientId: String,
+    val clientSecretId: String,
+    val redirectUri: String
+)
