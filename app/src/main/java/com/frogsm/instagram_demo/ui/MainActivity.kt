@@ -12,7 +12,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
-    val viewModel by viewModels<MainActivityViewModel>()
+    private val viewModel by viewModels<MainActivityViewModel>()
 
     private val pendingEventStore by lazy { IntentPendingEventStoreImpl(intent) }
 
