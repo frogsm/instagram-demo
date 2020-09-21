@@ -18,6 +18,10 @@ abstract class MediaCollectionModule {
         mediaCollectionDelegateImpl: MediaCollectionDelegateImpl
     ): MediaCollectionDelegate
 
+    /**
+     * TODO: 2020/09/22 추후 제거하는게 좋을 듯.. 힐트에서 지원하지 않음 임시방편으로 처리
+     * cc. https://stackoverflow.com/questions/62691794/how-to-pass-arguments-to-hilt-module
+     */
     companion object {
         @Provides
         fun providesController(
