@@ -63,12 +63,6 @@ dependencies {
 
     implementation deps.material.base
 
-    implementation deps.dagger.base
-    implementation deps.dagger.android
-    implementation deps.dagger.android_support
-    kapt deps.dagger.compiler
-    kapt deps.dagger.compiler_processor
-
     implementation deps.retrofit.base
     implementation deps.retrofit.convert_moshi
 
