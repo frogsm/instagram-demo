@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
@@ -15,6 +16,7 @@ import com.frogsm.instagram_demo.R
 import com.frogsm.instagram_demo.extensions.navigateSafely
 import com.frogsm.instagram_demo.extensions.showLongSnackBar
 import com.frogsm.instagram_demo.extensions.toDp
+import com.frogsm.instagram_demo.ui.MainActivityViewModel
 import com.frogsm.instagram_demo.ui.mediacollection.list.MediaCollectionAdapter
 import com.frogsm.instagram_demo.util.bindPageableScroll
 import dagger.hilt.android.AndroidEntryPoint
@@ -27,6 +29,8 @@ class MediaCollectionFragment : Fragment(R.layout.fragment_media_collection) {
 
     val viewModel by viewModels<MediaCollectionViewModel>()
     private val args by navArgs<MediaCollectionFragmentArgs>()
+
+    private val activityViewModel by activityViewModels<MainActivityViewModel>()
 
     @Inject
     lateinit var mediaCollectionAdapter: MediaCollectionAdapter
@@ -89,6 +93,10 @@ class MediaCollectionFragment : Fragment(R.layout.fragment_media_collection) {
                         mediaId = mediaId
                     )
                 findNavController().navigateSafely(action)
+            }
+
+            state.commonErrorHandle?.observeOnlyOnce {
+                activityViewModel.onCommonErrorHandle(it)
             }
         }
     }

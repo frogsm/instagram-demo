@@ -15,6 +15,7 @@ interface MediaCollectionStateBindable {
     // Events
     var showSnackBar: Event<String>?
     var navigateMediaDetail: Event<Pair<String, String>>?
+    var commonErrorHandle: Event<Throwable>?
 }
 
 class MediaCollectionState(
@@ -23,7 +24,8 @@ class MediaCollectionState(
     override var userItem: UserItem? = null,
     override var progressBarVisible: Boolean = true,
     override var showSnackBar: Event<String>? = null,
-    override var navigateMediaDetail: Event<Pair<String, String>>? = null
+    override var navigateMediaDetail: Event<Pair<String, String>>? = null,
+    override var commonErrorHandle: Event<Throwable>? = null
 ) : MediaCollectionStateBindable {
 
     var nextPageUrl: String? = null
@@ -85,6 +87,10 @@ class MediaCollectionState(
 
     fun onMediaCollectionItemClicked(mediaId: String) {
         navigateMediaDetail = Event(toolbarTitle to mediaId)
+    }
+
+    fun commonErrorHandle(throwable: Throwable) {
+        commonErrorHandle = Event(throwable)
     }
 
 }

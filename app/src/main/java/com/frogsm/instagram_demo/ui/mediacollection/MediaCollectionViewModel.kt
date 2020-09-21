@@ -75,10 +75,12 @@ class MediaCollectionViewModel @ViewModelInject constructor(
                 state.successGetMediaCollection(nextPageUrl, items)
                 liveData.postValue(state)
             }
-            .onFailure { // TODO: 2020/09/19
+            .onFailure {
                 cancel()
                 state.failureGetMediaCollection(null)
                 liveData.postValue(state)
+
+                state.commonErrorHandle(it)
             }
 
         showMediaCollectionProgressBar(false)
@@ -98,10 +100,12 @@ class MediaCollectionViewModel @ViewModelInject constructor(
                         state.successGetMediaCollection(nextPageUrl, items)
                         liveData.postValue(state)
                     }
-                    .onFailure { // TODO: 2020/09/19   
+                    .onFailure {
                         cancel()
                         state.failureGetMediaCollection(url)
                         liveData.postValue(state)
+
+                        state.commonErrorHandle(it)
                     }
             }
         }
