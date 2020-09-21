@@ -3,6 +3,7 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply plugin: "androidx.navigation.safeargs.kotlin"
+apply plugin: 'dagger.hilt.android.plugin'
 
 android {
     compileSdkVersion build_versions.compile_sdk
@@ -51,17 +52,16 @@ dependencies {
     implementation deps.androidx.lifecycle_ktx
     implementation deps.androidx.viewpager
     implementation deps.androidx.constraint_layout
+    implementation deps.androidx.hilt
+    kapt deps.androidx.hilt_compiler
 
     implementation deps.navigation.ui_ktx
     implementation deps.navigation.fragment_ktx
 
-    implementation deps.material.base
+    implementation deps.hilt.android
+    kapt deps.hilt.android_compiler
 
-    implementation deps.dagger.base
-    implementation deps.dagger.android
-    implementation deps.dagger.android_support
-    kapt deps.dagger.compiler
-    kapt deps.dagger.compiler_processor
+    implementation deps.material.base
 
     implementation deps.retrofit.base
     implementation deps.retrofit.convert_moshi

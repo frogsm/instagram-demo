@@ -1,5 +1,6 @@
 package com.frogsm.instagram_demo.ui.splash
 
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -8,9 +9,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import javax.inject.Inject
 
-class SplashViewModel @Inject constructor(
+class SplashViewModel @ViewModelInject constructor(
     private val getUser: GetUser
 ) : ViewModel(), SplashController {
 

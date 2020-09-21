@@ -1,29 +1,28 @@
 package com.frogsm.instagram_demo.ui.mediacollection
 
 import android.content.Context
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.frogsm.instagram_demo.domain.usecase.media.GetMediaCollection
 import com.frogsm.instagram_demo.domain.usecase.media.GetMediaCollectionFromUrl
 import com.frogsm.instagram_demo.domain.usecase.user.GetUser
-import com.frogsm.instagram_demo.ui.GlobalListener
-import com.frogsm.instagram_demo.ui.base.BaseViewModel
 import com.frogsm.instagram_demo.ui.mapper.mapToMediaCollectionItems
 import com.frogsm.instagram_demo.ui.mapper.mapToUserItem
 import com.frogsm.instagram_demo.ui.mediacollection.list.MediaCollectionItem
+import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import javax.inject.Inject
 
-class MediaCollectionViewModel @Inject constructor(
-    context: Context,
-    globalListener: GlobalListener,
+class MediaCollectionViewModel @ViewModelInject constructor(
+    @ApplicationContext context: Context,
     private val getUser: GetUser,
     private val getMediaCollection: GetMediaCollection,
     private val getMediaCollectionFromUrl: GetMediaCollectionFromUrl
-) : BaseViewModel(globalListener), MediaCollectionController {
+) : ViewModel(), MediaCollectionController {
 
     val liveData = MutableLiveData<MediaCollectionStateBindable>()
     private val state = MediaCollectionState(context.resources)
@@ -76,10 +75,12 @@ class MediaCollectionViewModel @Inject constructor(
                 state.successGetMediaCollection(nextPageUrl, items)
                 liveData.postValue(state)
             }
-            .onFailureAfterHttpExceptionHandle {
+            .onFailure {
                 cancel()
                 state.failureGetMediaCollection(null)
                 liveData.postValue(state)
+
+                state.commonErrorHandle(it)
             }
 
         showMediaCollectionProgressBar(false)
@@ -99,10 +100,12 @@ class MediaCollectionViewModel @Inject constructor(
                         state.successGetMediaCollection(nextPageUrl, items)
                         liveData.postValue(state)
                     }
-                    .onFailureAfterHttpExceptionHandle {
+                    .onFailure {
                         cancel()
                         state.failureGetMediaCollection(url)
                         liveData.postValue(state)
+
+                        state.commonErrorHandle(it)
                     }
             }
         }

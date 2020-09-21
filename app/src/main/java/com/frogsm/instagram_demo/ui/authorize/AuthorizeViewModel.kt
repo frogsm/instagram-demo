@@ -1,19 +1,20 @@
 package com.frogsm.instagram_demo.ui.authorize
 
 import android.content.Context
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.frogsm.instagram_demo.domain.usecase.authorize.CreateAccessToken
 import com.frogsm.instagram_demo.domain.usecase.authorize.CreateOauthAuthorizeUri
+import dagger.hilt.android.qualifiers.ActivityContext
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import javax.inject.Inject
 
-class AuthorizeViewModel @Inject constructor(
-    context: Context,
+class AuthorizeViewModel @ViewModelInject constructor(
+    @ActivityContext context: Context,
     private val createOauthAuthorizeUri: CreateOauthAuthorizeUri,
     private val createAccessToken: CreateAccessToken
 ) : ViewModel(), AuthorizeController {

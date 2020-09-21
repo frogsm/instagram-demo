@@ -1,22 +1,20 @@
 package com.frogsm.instagram_demo.ui.mediadetail
 
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.frogsm.instagram_demo.domain.usecase.media.GetCacheThanFreshMediaDetail
-import com.frogsm.instagram_demo.ui.GlobalListener
-import com.frogsm.instagram_demo.ui.base.BaseViewModel
 import com.frogsm.instagram_demo.ui.mapper.mapToMediaDetailItem
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import javax.inject.Inject
 
-class MediaDetailViewModel @Inject constructor(
-    globalListener: GlobalListener,
+class MediaDetailViewModel @ViewModelInject constructor(
     private val getCacheThanFreshMediaDetail: GetCacheThanFreshMediaDetail
-) : BaseViewModel(globalListener), MediaDetailController {
+) : ViewModel(), MediaDetailController {
 
     val liveData = MutableLiveData<MediaDetailStateBindable>()
     private val state = MediaDetailState()
