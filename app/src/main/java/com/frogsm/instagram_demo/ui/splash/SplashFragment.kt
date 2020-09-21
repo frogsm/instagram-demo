@@ -2,21 +2,18 @@ package com.frogsm.instagram_demo.ui.splash
 
 import android.os.Bundle
 import android.view.View
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
 import com.frogsm.instagram_demo.R
 import com.frogsm.instagram_demo.extensions.navigateSafely
-import com.frogsm.instagram_demo.ui.ViewModelFactory
-import com.frogsm.instagram_demo.ui.base.BaseFragment
-import javax.inject.Inject
+import dagger.hilt.android.AndroidEntryPoint
 
-class SplashFragment : BaseFragment(R.layout.fragment_splash) {
+@AndroidEntryPoint
+class SplashFragment : Fragment(R.layout.fragment_splash) {
 
-    @Inject
-    lateinit var viewModelFactory: ViewModelFactory
-
-    private val viewModel by viewModels<SplashViewModel> { viewModelFactory }
+    private val viewModel by viewModels<SplashViewModel>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

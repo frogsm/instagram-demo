@@ -2,20 +2,21 @@ package com.frogsm.instagram_demo.ui.login
 
 import android.content.Context
 import android.text.Editable
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.frogsm.instagram_demo.R
 import com.frogsm.instagram_demo.domain.usecase.login.ValidateLogin
 import com.frogsm.instagram_demo.domain.usecase.user.GetUser
+import dagger.hilt.android.qualifiers.ActivityContext
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import javax.inject.Inject
 
-class LoginViewModel @Inject constructor(
-    context: Context,
+class LoginViewModel @ViewModelInject constructor(
+    @ActivityContext context: Context,
     private val getUser: GetUser,
     private val validateLogin: ValidateLogin
 ) : ViewModel(), LoginController {

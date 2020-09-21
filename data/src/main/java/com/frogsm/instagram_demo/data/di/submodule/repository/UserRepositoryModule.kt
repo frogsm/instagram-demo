@@ -8,9 +8,12 @@ import com.frogsm.instagram_demo.domain.repository.UserRepository
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ApplicationComponent
 import javax.inject.Singleton
 
 @Module
+@InstallIn(ApplicationComponent::class)
 abstract class UserRepositoryModule {
 
     @Binds

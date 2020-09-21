@@ -5,6 +5,7 @@ import android.text.SpannableStringBuilder
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import androidx.core.widget.doAfterTextChanged
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
@@ -12,17 +13,13 @@ import com.frogsm.instagram_demo.R
 import com.frogsm.instagram_demo.extensions.hideKeyboard
 import com.frogsm.instagram_demo.extensions.navigateSafely
 import com.frogsm.instagram_demo.extensions.showLongSnackBar
-import com.frogsm.instagram_demo.ui.ViewModelFactory
-import com.frogsm.instagram_demo.ui.base.BaseFragment
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_login.*
-import javax.inject.Inject
 
-class LoginFragment : BaseFragment(R.layout.fragment_login) {
+@AndroidEntryPoint
+class LoginFragment : Fragment(R.layout.fragment_login) {
 
-    @Inject
-    lateinit var viewModelFactory: ViewModelFactory
-
-    private val viewModel by viewModels<LoginViewModel> { viewModelFactory }
+    private val viewModel by viewModels<LoginViewModel>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

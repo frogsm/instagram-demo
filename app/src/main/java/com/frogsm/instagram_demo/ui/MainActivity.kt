@@ -2,19 +2,17 @@ package com.frogsm.instagram_demo.ui
 
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.observe
 import com.frogsm.instagram_demo.R
 import com.frogsm.instagram_demo.util.IntentPendingEventStoreImpl
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import dagger.android.support.DaggerAppCompatActivity
-import javax.inject.Inject
+import dagger.hilt.android.AndroidEntryPoint
 
-class MainActivity : DaggerAppCompatActivity() {
+@AndroidEntryPoint
+class MainActivity : AppCompatActivity() {
 
-    @Inject
-    lateinit var viewModelFactory: ViewModelFactory
-
-    val viewModel by viewModels<MainActivityViewModel> { viewModelFactory }
+    val viewModel by viewModels<MainActivityViewModel>()
 
     private val pendingEventStore by lazy { IntentPendingEventStoreImpl(intent) }
 
