@@ -10,15 +10,19 @@ import com.frogsm.instagram_demo.data.util.ServiceCreator
 import com.frogsm.instagram_demo.data.util.TokenInterceptor
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ApplicationComponent
+import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Singleton
 
 @Module
+@InstallIn(ApplicationComponent::class)
 class ApiModule {
 
     @Provides
     @Singleton
     fun providesAuthorizationApi(
-        context: Context,
+        @ApplicationContext context: Context,
         moshiCreator: MoshiCreator,
         serviceCreator: ServiceCreator
     ): AuthorizationApi = serviceCreator.createService(
@@ -30,7 +34,7 @@ class ApiModule {
     @Provides
     @Singleton
     fun providesUserApi(
-        context: Context,
+        @ApplicationContext context: Context,
         moshiCreator: MoshiCreator,
         serviceCreator: ServiceCreator
     ): UserApi = serviceCreator.createService(
@@ -42,7 +46,7 @@ class ApiModule {
     @Provides
     @Singleton
     fun providesMediaApi(
-        context: Context,
+        @ApplicationContext context: Context,
         moshiCreator: MoshiCreator,
         serviceCreator: ServiceCreator
     ): MediaApi = serviceCreator.createService(

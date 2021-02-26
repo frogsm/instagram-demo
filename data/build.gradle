@@ -3,6 +3,7 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'realm-android'
+apply plugin: 'dagger.hilt.android.plugin'
 
 android {
     compileSdkVersion build_versions.compile_sdk
@@ -48,11 +49,8 @@ dependencies {
     implementation deps.androidx.core_ktx
     implementation deps.androidx.appcompat
 
-    implementation deps.dagger.base
-    implementation deps.dagger.android
-    implementation deps.dagger.android_support
-    kapt deps.dagger.compiler
-    kapt deps.dagger.compiler_processor
+    implementation deps.hilt.android
+    kapt deps.hilt.android_compiler
 
     implementation deps.retrofit.base
     implementation deps.retrofit.convert_moshi

@@ -7,23 +7,20 @@ import android.webkit.WebResourceRequest
 import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.frogsm.instagram_demo.R
 import com.frogsm.instagram_demo.extensions.showLongSnackBar
-import com.frogsm.instagram_demo.ui.ViewModelFactory
-import com.frogsm.instagram_demo.ui.base.BaseFragment
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_authorize.*
-import javax.inject.Inject
 
-class AuthorizeFragment : BaseFragment(R.layout.fragment_authorize) {
+@AndroidEntryPoint
+class AuthorizeFragment : Fragment(R.layout.fragment_authorize) {
 
-    @Inject
-    lateinit var viewModelFactory: ViewModelFactory
-
-    private val viewModel by viewModels<AuthorizeViewModel> { viewModelFactory }
+    private val viewModel by viewModels<AuthorizeViewModel>()
     private val args by navArgs<AuthorizeFragmentArgs>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

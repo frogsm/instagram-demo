@@ -4,25 +4,24 @@ import android.os.Bundle
 import android.text.SpannableStringBuilder
 import android.view.View
 import android.view.inputmethod.EditorInfo
+import android.widget.EditText
 import androidx.core.widget.doAfterTextChanged
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.observe
 import androidx.navigation.fragment.findNavController
 import com.frogsm.instagram_demo.R
 import com.frogsm.instagram_demo.extensions.hideKeyboard
 import com.frogsm.instagram_demo.extensions.navigateSafely
+import com.frogsm.instagram_demo.extensions.requestFocusLastCharacterIfNotEmpty
 import com.frogsm.instagram_demo.extensions.showLongSnackBar
-import com.frogsm.instagram_demo.ui.ViewModelFactory
-import com.frogsm.instagram_demo.ui.base.BaseFragment
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_login.*
-import javax.inject.Inject
 
-class LoginFragment : BaseFragment(R.layout.fragment_login) {
+@AndroidEntryPoint
+class LoginFragment : Fragment(R.layout.fragment_login) {
 
-    @Inject
-    lateinit var viewModelFactory: ViewModelFactory
-
-    private val viewModel by viewModels<LoginViewModel> { viewModelFactory }
+    private val viewModel by viewModels<LoginViewModel>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -32,16 +31,25 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
     }
 
     private fun initUi() {
-        clientIdEditBox.doAfterTextChanged { text ->
-            viewModel.onClientIdChanged(text)
+        clientIdEditBox.apply {
+            requestFocusLastCharacterIfNotEmpty()
+            doAfterTextChanged { text ->
+                viewModel.onClientIdChanged(text)
+            }
         }
 
-        clientSecretIdEditBox.doAfterTextChanged { text ->
-            viewModel.onClientSecretIdChanged(text)
+        clientSecretIdEditBox.apply {
+            requestFocusLastCharacterIfNotEmpty()
+            doAfterTextChanged { text ->
+                viewModel.onClientSecretIdChanged(text)
+            }
         }
 
-        redirectUriEditBox.doAfterTextChanged { text ->
-            viewModel.onRedirectUriChanged(text)
+        redirectUriEditBox.apply {
+            requestFocusLastCharacterIfNotEmpty()
+            doAfterTextChanged { text ->
+                viewModel.onRedirectUriChanged(text)
+            }
         }
 
         redirectUriEditBox.setOnEditorActionListener { v, actionId, _ ->
@@ -66,7 +74,7 @@ class LoginFragment : BaseFragment(R.layout.fragment_login) {
                 ?.run { text = SpannableStringBuilder(state.clientId) }
 
             clientSecretIdEditBox
-                .takeIf { it.text.toString() != state.clientId }
+                .takeIf { it.text.toString() != state.clientSecretId }
                 ?.run { text = SpannableStringBuilder(state.clientSecretId) }
 
             redirectUriEditBox
