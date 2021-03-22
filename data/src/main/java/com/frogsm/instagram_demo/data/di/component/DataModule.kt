@@ -7,7 +7,7 @@ import com.frogsm.instagram_demo.data.di.submodule.repository.MediaRepositoryMod
 import com.frogsm.instagram_demo.data.di.submodule.repository.UserRepositoryModule
 import dagger.Module
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ApplicationComponent
+import dagger.hilt.components.SingletonComponent
 
 @Module(
     includes = [
@@ -18,5 +18,5 @@ import dagger.hilt.android.components.ApplicationComponent
         UserRepositoryModule::class
     ]
 )
-@InstallIn(ApplicationComponent::class)
+@InstallIn(SingletonComponent::class)
 abstract class DataModule
